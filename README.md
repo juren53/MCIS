@@ -16,7 +16,9 @@ MCIS will be built on a two-tier architecture:
 - Low training curve for volunteers and part-time staff with high turnover
 - Multi-user client/server — PySide6 desktop clients connecting to a shared database
 - Modular — museums can adopt only the modules they need and expand over time
+- Data portable — museums own their data; no vendor lock-in; standard SQL exports
 - Internet Archive publishing as a first-class feature, not an afterthought
+- Accessible by design — UI will meet WCAG 2.1 AA keyboard navigation and screen reader standards
 
 ## Technology stack
 
