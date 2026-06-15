@@ -3,25 +3,25 @@
 _High Level Project Plan_
 
 ## 1. Project Overview
-MCIS is a free, open source museum collections information system designed specifically for small, budget-constrained museums, historical societies, and specialized collections. It provides professional-grade collections management without the cost or complexity of commercial solutions such as PastPerfect, Argus, or The Museum System (TMS).
+MCIS will be a free, open source museum collections information system designed specifically for small, budget-constrained museums, historical societies, and specialized collections. It will provide professional-grade collections management without the cost or complexity of commercial solutions such as PastPerfect, Argus, or The Museum System (TMS).
 
-The system is built on a two-tier public/private architecture:
+The system will be built on a two-tier public/private architecture:
 
-*   **Public Tier** — Selected collection records and artifact images are published to the museum's Internet Archive (IA) collections, providing free, permanent, searchable public access aligned with the GLAM (Galleries, Libraries, Archives, Museums) open access movement.
-*   **Private Tier** — Full operational data is maintained in a secure, self-hosted SQL database covering collections management, donor records, loans, member communications, and internal inventory.
+*   **Public Tier** — Selected collection records and artifact images will be published to the museum's Internet Archive (IA) collections, providing free, permanent, searchable public access aligned with the GLAM (Galleries, Libraries, Archives, Museums) open access movement.
+*   **Private Tier** — Full operational data will be maintained in a secure, self-hosted SQL database covering collections management, donor records, loans, member communications, and internal inventory.
 
 ## 2. Goals & Guiding Principles
 
 | Principle                 | Description                                                                     |
 | :------------------------ | :------------------------------------------------------------------------------ |
 | Free & Open Source        | No licensing fees. Community-developed and maintained under an open source license. |
-| Affordable to Deploy      | Runs on modest hardware the museum already owns, or a low-cost VPS.           |
+| Affordable to Deploy      | Will run on modest hardware the museum already owns, or a low-cost VPS.       |
 | Simple to Operate         | Low training curve for volunteers and part-time staff with high turnover.       |
-| Multi-User Ready          | PyQt6 desktop clients connect to a shared SQL server — standard client/server architecture. |
-| Modular by Design         | Each functional area is a standalone module. Museums adopt incrementally.       |
-| Data Portable             | Museums own their data. No vendor lock-in. Standard SQL exports.                |
-| Public Access Built In    | Internet Archive publishing is a first-class feature, not an afterthought.        |
-| Grant Friendly            | Open access commitment and IMLS-aligned mission supports grant applications.    |
+| Multi-User Ready          | PyQt6 desktop clients will connect to a shared SQL server — standard client/server architecture. |
+| Modular by Design         | Each functional area will be a standalone module. Museums can adopt incrementally. |
+| Data Portable             | Museums will own their data. No vendor lock-in. Standard SQL exports.           |
+| Public Access Built In    | Internet Archive publishing will be a first-class feature, not an afterthought.   |
+| Grant Friendly            | Open access commitment and IMLS-aligned mission will support grant applications. |
 
 ## 3. Target Users
 
@@ -45,17 +45,17 @@ The system is built on a two-tier public/private architecture:
 
 ### 4.2 Deployment Model
 
-The SQL database server runs on one dedicated machine the museum already owns (or an inexpensive VPS). Staff and volunteers install the lightweight PyQt6 client on their individual workstations. No web browser, no web server, and no complex middleware are required.
+The SQL database server will run on one dedicated machine the museum already owns (or an inexpensive VPS). Staff and volunteers will install the lightweight PyQt6 client on their individual workstations. No web browser, no web server, and no complex middleware will be required.
 
-The Internet Archive publishing module runs as part of the desktop client, batching approved records and images to the museum's IA collection via the official API.
+The Internet Archive publishing module will run as part of the desktop client, batching approved records and images to the museum's IA collection via the official API.
 
 ## 5. Module Architecture
 
-MCIS is built as a modular system. Each module can be run standalone or integrated into the full MCIS shell. This allows museums to start with only what they need and expand over time.
+MCIS will be built as a modular system. Each module will be able to run standalone or integrated into the full MCIS shell. This will allow museums to start with only what they need and expand over time.
 
 ### 5.1 Core Shell
 
-The Core Shell is the foundation that all modules plug into. It is not optional.
+The Core Shell will be the foundation that all modules plug into. It will not be optional.
 
 *   Database connection configuration and connection pooling
 *   User authentication and role-based access control (Admin, Registrar, Staff, Volunteer, Read-Only)
@@ -168,7 +168,7 @@ Tools and processes for migrating existing museum data from spreadsheets, legacy
 | CollectiveAccess           | Free                | Small–Large | Yes         | No               |
 | MCIS (proposed)            | Free                | Small       | Yes         | Yes — built in   |
 
-CollectiveAccess is the closest open source peer, but it is a web-based PHP application requiring a web server — a significant deployment burden for small museums with no IT staff. MCIS targets an even simpler deployment model and makes Internet Archive publishing a first-class feature.
+CollectiveAccess is the closest open source peer, but it is a web-based PHP application requiring a web server — a significant deployment burden for small museums with no IT staff. MCIS will target an even simpler deployment model and will make Internet Archive publishing a first-class feature.
 
 ## 9. Risks & Mitigations
 
