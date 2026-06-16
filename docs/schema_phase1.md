@@ -17,6 +17,9 @@ Schema for the five entities required by Phase 1 (Core Framework): Collections, 
 | Booleans       | `is_*` prefix where the meaning is not otherwise obvious                                  |
 | Bounded text   | `VARCHAR(n)` for fields with a known maximum; `TEXT` for unbounded narrative fields       |
 | Soft delete    | Not used — rows are hard-deleted; the AuditLog captures what was removed and by whom     |
+| FK ON DELETE   | Default is `RESTRICT`; `CASCADE` is used only where explicitly noted and justified       |
+| Encoding       | Database must be created with `ENCODING = 'UTF8'` to support accented characters and non-Latin scripts in names and provenance fields |
+| `updated_at`   | Maintained by a SQLAlchemy event listener on all mapped classes — not by a database trigger. Applies to every table that carries `updated_at`. |
 
 ---
 
@@ -38,7 +41,6 @@ Represents a named grouping of objects managed under a common accession policy. 
 
 **Notes:**
 - `finding_aid` is intentionally free-form at this stage; a URL to an external document is the common case.
-- `updated_at` must be maintained by the application on every write; a trigger or SQLAlchemy event listener is recommended.
 
 ---
 
@@ -49,7 +51,7 @@ The central entity — one row per catalogued item. This table will be the most 
 | Column           | Type          | Constraints                                                                 | Description                                                                 |
 | :--------------- | :------------ | :-------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
 | object_id        | SERIAL        | PRIMARY KEY                                                                 |                                                                             |
-| collection_id    | INTEGER       | NOT NULL REFERENCES collections(collection_id)                              | Parent collection                                                           |
+| collection_id    | INTEGER       | NOT NULL REFERENCES collections(collection_id) ON DELETE RESTRICT           | Parent collection — deletion blocked while objects exist                    |
 | accession_number | VARCHAR(100)  | NOT NULL UNIQUE                                                             | Museum-assigned identifier, e.g. "2024.001.001"                             |
 | title            | VARCHAR(500)  | NOT NULL                                                                    | Display title                                                               |
 | description      | TEXT          |                                                                             | Narrative description of the object                                         |
@@ -60,7 +62,9 @@ The central entity — one row per catalogued item. This table will be the most 
 | condition        | VARCHAR(20)   | CHECK (condition IN ('Excellent','Good','Fair','Poor','Unknown'))           | Condition grade at time of last assessment                                  |
 | condition_notes  | TEXT          |                                                                             | Narrative notes from the most recent condition assessment                   |
 | provenance       | TEXT          |                                                                             | Ownership and acquisition history                                           |
+| credit_line      | TEXT          |                                                                             | Attribution text for public display, e.g. "Gift of John Smith, 2024"       |
 | location_id      | INTEGER       | (FK constraint added in Phase 2 when locations table exists)                | Current storage or display location. NULL until Phase 2.                    |
+| rights_statement | TEXT          |                                                                             | Copyright status or license statement. Required for Internet Archive publishing (Phase 3 dependency) |
 | ia_published     | BOOLEAN       | NOT NULL DEFAULT FALSE                                                      | Whether the record has been published to Internet Archive                   |
 | ia_identifier    | VARCHAR(255)  | UNIQUE                                                                      | Internet Archive item identifier, e.g. "mcis-photo-2024-001-001"           |
 | created_at       | TIMESTAMPTZ   | NOT NULL DEFAULT NOW()                                                      |                                                                             |
@@ -77,6 +81,8 @@ The central entity — one row per catalogued item. This table will be the most 
 - `accession_date` is a strict `DATE` field for the formal accession event, which always has a known calendar date.
 - `location_id` is included as a nullable INTEGER in Phase 1 with no FK constraint. The `locations` table and the FK constraint are added in Phase 2.
 - `condition` uses a CHECK constraint rather than a lookup table for simplicity at this stage. A full condition report history (separate table, multiple assessments per object) is a candidate Phase 2 enhancement.
+- `credit_line` is distinct from `provenance` — provenance is an ownership history; credit_line is the short attribution string displayed publicly alongside the object.
+- `rights_statement` is nullable at this stage but must be populated before an object can be published to Internet Archive (Phase 3 requirement).
 
 ---
 
@@ -84,15 +90,18 @@ The central entity — one row per catalogued item. This table will be the most 
 
 One or more image or document files associated with an object. Multiple media records per object are supported; exactly one per object should be flagged `is_primary = TRUE`.
 
-| Column      | Type          | Constraints                                      | Description                                                              |
-| :---------- | :------------ | :----------------------------------------------- | :----------------------------------------------------------------------- |
-| media_id    | SERIAL        | PRIMARY KEY                                      |                                                                          |
-| object_id   | INTEGER       | NOT NULL REFERENCES objects(object_id) ON DELETE CASCADE | Parent object                                                  |
-| file_path   | VARCHAR(1000) | NOT NULL                                         | Path to the file relative to the configured media root directory         |
-| file_type   | VARCHAR(50)   | NOT NULL                                         | MIME type, e.g. "image/jpeg", "image/tiff", "application/pdf"           |
-| caption     | TEXT          |                                                  | Optional caption or description of the image                             |
-| is_primary  | BOOLEAN       | NOT NULL DEFAULT FALSE                           | Whether this is the main display image for the object                    |
-| upload_date | TIMESTAMPTZ   | NOT NULL DEFAULT NOW()                           |                                                                          |
+| Column            | Type          | Constraints                                      | Description                                                              |
+| :---------------- | :------------ | :----------------------------------------------- | :----------------------------------------------------------------------- |
+| media_id          | SERIAL        | PRIMARY KEY                                      |                                                                          |
+| object_id         | INTEGER       | NOT NULL REFERENCES objects(object_id) ON DELETE CASCADE | Parent object                                                  |
+| file_path         | VARCHAR(1000) | NOT NULL                                         | Path to the file relative to the configured media root directory         |
+| original_filename | VARCHAR(255)  |                                                  | Original filename at time of import; retained for reference and deduplication |
+| file_type         | VARCHAR(50)   | NOT NULL                                         | MIME type, e.g. "image/jpeg", "image/tiff", "application/pdf"           |
+| file_size         | BIGINT        |                                                  | File size in bytes; useful for storage management and upload progress    |
+| caption           | TEXT          |                                                  | Optional caption or description of the image                             |
+| sort_order        | INTEGER       | NOT NULL DEFAULT 0                               | Controls display sequence when an object has multiple images             |
+| is_primary        | BOOLEAN       | NOT NULL DEFAULT FALSE                           | Whether this is the main display image for the object                    |
+| created_at        | TIMESTAMPTZ   | NOT NULL DEFAULT NOW()                           |                                                                          |
 
 **Indexes:**
 - `object_id` — retrieve all media for a given object
@@ -101,6 +110,8 @@ One or more image or document files associated with an object. Multiple media re
 **Notes:**
 - `ON DELETE CASCADE` means deleting an object automatically deletes all its associated media records.
 - `file_path` is stored as a path relative to a configurable media root so the database is portable across machines with different directory layouts.
+- `original_filename` is the name of the file as supplied by the user at import time. It is not used to locate the file on disk — `file_path` is the authoritative path.
+- `sort_order` defaults to 0; the UI should allow drag-to-reorder and persist changes to this field.
 - The partial unique index on `(object_id) WHERE is_primary = TRUE` is a PostgreSQL feature. Application code must also enforce this invariant when the database is SQLite (single-user fallback).
 - The application layer is responsible for validating MIME types and file extensions before insert.
 
@@ -151,7 +162,7 @@ Append-only record of every create, update, and delete operation on tracked tabl
 | log_id         | BIGSERIAL     | PRIMARY KEY                                                       | BIGSERIAL — audit logs accumulate at high volume over time                      |
 | user_id        | INTEGER       | REFERENCES users(user_id)                                         | User who performed the action. NULL for system or migration-initiated changes.  |
 | table_name     | VARCHAR(100)  | NOT NULL                                                          | Name of the table that was changed                                              |
-| record_id      | INTEGER       | NOT NULL                                                          | Primary key value of the affected row                                           |
+| record_id      | BIGINT        | NOT NULL                                                          | Primary key value of the affected row — BIGINT to accommodate BIGSERIAL PKs    |
 | action         | VARCHAR(10)   | NOT NULL CHECK (action IN ('CREATE','UPDATE','DELETE'))           | Type of change                                                                  |
 | changed_fields | JSONB         |                                                                   | For UPDATE: `{"field": {"old": ..., "new": ...}}`. For CREATE/DELETE: full row snapshot. |
 | logged_at      | TIMESTAMPTZ   | NOT NULL DEFAULT NOW()                                            | Timestamp of the change                                                         |
