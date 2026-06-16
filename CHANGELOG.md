@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-16] — Use Cases
+
+### Added
+- `docs/use_cases/index.md` — master index of all 36 use cases with module, actor, and file references; includes sources and references section (schema documents, high-level plan, *Museum Registration Methods* AAM 5th ed., Collections Trust SPECTRUM standard)
+- `docs/use_cases/UC-Phase1-Collections.md` — 5 use cases: create collection, edit collection, view all collections, [NEGATIVE] delete collection with objects, delete empty collection
+- `docs/use_cases/UC-Phase1-Objects.md` — 9 use cases: accession object, accession with fuzzy date, edit object, condition assessment, assign credit line and rights statement, search by accession number, search by title keyword, [NEGATIVE] duplicate accession number, flag for IA publication
+- `docs/use_cases/UC-Phase1-Media.md` — 7 use cases: add primary image, add non-primary image, [NEGATIVE] add second primary image, change primary image, reorder images, delete image, delete object with media cascade
+- `docs/use_cases/UC-Phase1-Users.md` — 7 use cases: create Admin user, create Volunteer user, deactivate user, [NEGATIVE] login with deactivated account, [NEGATIVE] Volunteer attempts delete, ReadOnly views object, audit log captures change
+- `docs/use_cases/UC-Phase2-Locations.md` — 7 use cases: create room, create case in hierarchy, assign object to location, move object, retire location, [NEGATIVE] delete parent with children, create off-site location
+- `docs/use_cases/UC-Phase2-Loans.md` — 9 use cases: create outgoing loan, add objects to loan, record condition-out, return one object from multi-object loan, return last object and close loan, view overdue dashboard, cancel loan, [NEGATIVE] delete object on active loan, [NEGATIVE] add same object twice
+- `docs/use_cases/UC-Phase2-Donors.md` — 7 use cases: add individual donor, add organization donor, link object to donor, mark anonymous, record acknowledgment, [NEGATIVE] set acknowledgment date without sent flag, deactivate deceased donor
+
+---
+
 ## [2026-06-16] — Schema Design Phase 2 + Critique Fixes
 
 ### Added
@@ -100,6 +114,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Version History Summary
 
-- **2026-06-16** — Phase 2 schema design added; two critique passes on Phase 2 schema; Phase 1 schema critique pass; deployment model clarified in plan; CHANGELOG added
+- **2026-06-16** — Use cases collection added (36 cases, 7 modules, Phases 1–2); Phase 2 schema design added; two critique passes on Phase 2 schema; Phase 1 schema critique pass; deployment model clarified in plan; CHANGELOG added
 - **2026-06-15** — Phase 1 schema design (collections, objects, media, users, audit_log) added; README deployment wording improved
 - **2026-06-14** — Project launched: high-level plan converted from HTML and fully revised; README written and refined; critique passes on both documents
