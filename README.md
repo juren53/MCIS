@@ -1,6 +1,6 @@
 # MCIS — Museum Collections Information System
 
-MCIS will be a free, open source collections management system designed for small museums, historical societies, and specialized collections that need professional-grade tools without the cost or complexity of commercial software such as PastPerfect, Argus, or The Museum System (TMS).
+MCIS is a free, open source collections management system designed for small museums, historical societies, and specialized collections that need professional-grade tools without the cost or complexity of commercial software such as PastPerfect, Argus, or The Museum System (TMS).
 
 ## Overview
 
@@ -14,11 +14,11 @@ A lightweight desktop client can be installed on a laptop or workstation and con
 ## Key principles
 
 - Free and open source — no licensing fees
+- Internet Archive publishing as a first-class feature, available from the first release
 - Runs on modest hardware the museum already owns
 - Low training curve for volunteers and part-time staff with high turnover
 - Modular — museums can adopt only the modules they need and expand over time
 - Data portable — museums own their data; no vendor lock-in; standard SQL exports
-- Internet Archive publishing as a first-class feature, not an afterthought
 - Accessible by design — consistent, intuitive interface operable without specialist training
 
 ## Technology stack
@@ -28,14 +28,14 @@ A lightweight desktop client can be installed on a laptop or workstation and con
 | Desktop client | Python / PySide6               |
 | Database       | PostgreSQL                     |
 | Database layer | SQLAlchemy                     |
-| IA publishing  | internetarchive Python library |
-| Packaging      | PyInstaller (Windows, Linux)   |
+| IA publishing  | Internet Archive API           |
+| Packaging      | PyInstaller (Windows, Linux, macOS) |
 
 ## Project status
 
-MCIS is in early development, currently in **Phase 0 — Project Infrastructure** (schema design, repository setup, CI configuration).
+MCIS is in **Phase 0 — Project Infrastructure**. Schema design and use case documentation are complete; application development is beginning.
 
-For the full project plan — including module architecture, phased roadmap, entity model, competitive landscape, risks, and glossary — see [docs/MCIS_High_Level_Plan.md](docs/MCIS_High_Level_Plan.md).
+For the full project plan — including module architecture, phased roadmap, data model, competitive landscape, risks, and glossary — see [docs/MCIS_High_Level_Plan.md](docs/MCIS_High_Level_Plan.md).
 
 ## Documentation
 
@@ -59,4 +59,4 @@ Visit the [GitHub repository](https://github.com/juren53/MCIS) to open an issue 
 
 ## License
 
-License will be MIT or GPL v3 — decision expected before the first code release. See the [project plan](docs/MCIS_High_Level_Plan.md) for the licensing rationale.
+License will be MIT or GPL v3 — decision expected before the first code release.

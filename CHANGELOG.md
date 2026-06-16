@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-16-1451] — README Critique Fixes
+
+### Changed
+- `README.md` — seven critique points addressed:
+  - Opening sentence changed from "MCIS will be" to "MCIS is" — present tense is standard for GitHub READMEs
+  - Internet Archive publishing moved to 2nd principle — it is the key differentiator and was buried at 6th
+  - "internetarchive Python library" → "Internet Archive API" — consistent with High Level Plan
+  - macOS added to PyInstaller row — was inconsistently omitted
+  - Project Status rewritten to reflect actual Phase 0 progress (schema and use cases complete)
+  - "entity model" → "data model" in project plan link description
+  - License section: removed dangling link to plan "for licensing rationale" — rationale is not detailed in the plan
+
+---
+
 ## [2026-06-16-1444] — Documentation Plan Critique Fixes (v0.3)
 
 ### Changed
