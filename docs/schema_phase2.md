@@ -59,7 +59,7 @@ Represents physical and logical places where objects are stored or displayed. Su
 
 **Notes:**
 - The hierarchy is intentionally shallow in typical use: Building → Room → Case → Position. Deep nesting is supported but not required.
-- `ON DELETE RESTRICT` on the self-referential FK prevents deleting a parent location while child locations exist.
+- `ON DELETE RESTRICT` on the self-referential FK prevents deleting a parent location while child locations exist. To retire a location hierarchy, delete or reassign child locations first, then the parent — bottom-up.
 - Objects on loan are assigned to the borrower's location record (a location of type `Offsite`), not tracked separately. The Loans table carries the borrower contact details.
 - Setting `is_active = FALSE` retires a location without removing its history from object location records.
 - `name` has no uniqueness constraint. Duplicate names under the same parent are technically allowed. Consider enforcing uniqueness at the application level, or adding `UNIQUE (name, parent_location_id)` noting that PostgreSQL treats two NULLs as distinct, so duplicate top-level names would not be caught by that constraint.
@@ -79,7 +79,7 @@ Records an outgoing or incoming loan agreement at the header level. The specific
 | start_date          | DATE           | NOT NULL                                                                               | Date the loan begins                                                 |
 | end_date            | DATE           |                                                                                        | Expected return date. NULL for open-ended loans.                     |
 | insurance_value     | NUMERIC(12,2)  |                                                                                        | Declared insurance value covering all objects in the loan            |
-| insurance_currency  | CHAR(3)        | DEFAULT 'USD'                                                                          | ISO 4217 currency code. NULL when insurance_value is not recorded.   |
+| insurance_currency  | CHAR(3)        |                                                                                        | ISO 4217 currency code. NULL when insurance_value is not recorded.   |
 | agreement_ref       | VARCHAR(255)   |                                                                                        | Loan agreement document reference number or filename                 |
 | agreement_notes     | TEXT           |                                                                                        | Notes about special terms or conditions in the agreement             |
 | purpose             | TEXT           |                                                                                        | Purpose of the loan, e.g. "Travelling exhibition", "Conservation study" |
@@ -90,13 +90,14 @@ Records an outgoing or incoming loan agreement at the header level. The specific
 **Indexes:**
 - `loan_type` — filter outgoing vs incoming
 - `status` — active loan dashboard and overdue alerts
+- `start_date` — fiscal-year and date-range queries
 - `end_date` — deadline alert queries (`WHERE end_date < NOW() AND status = 'Active'`)
 - `counterparty_name` — search by institution
 
 **Notes:**
 - `counterparty_name` and `counterparty_contact` store the external party for both loan types. For outgoing loans this is the borrower; for incoming loans this is the lender.
 - `insurance_value` covers the full loan. Per-object insurance values, if needed, are a future enhancement on `loan_objects`.
-- `insurance_value` and `insurance_currency` are both nullable. When `insurance_value` is set, `insurance_currency` should also be set; the application enforces this pairing.
+- `insurance_value` and `insurance_currency` are both nullable with no default. When `insurance_value` is set, `insurance_currency` must also be set; the application enforces this pairing. Both fields are always written together.
 - Overdue state is not stored — it is computed on-the-fly as `end_date < CURRENT_DATE AND status = 'Active'`. This avoids a stored value drifting out of sync with the actual date.
 - Loan agreements (PDF files) should be stored in the media directory and referenced by `agreement_ref`, not stored as BLOBs in the database.
 
@@ -118,6 +119,7 @@ Junction table linking loans to the specific objects they cover. Also records th
 | notes              | TEXT         |                                                                               | Per-object handling instructions for this loan, e.g. "display upright only" |
 | returned_at        | TIMESTAMPTZ  |                                                                               | Timestamp the object was checked back in. NULL while still on loan. |
 | created_at         | TIMESTAMPTZ  | NOT NULL DEFAULT NOW()                                                        | When this object was added to the loan                              |
+| updated_at         | TIMESTAMPTZ  | NOT NULL DEFAULT NOW()                                                        | Updated when condition_in, notes, or returned_at change             |
 
 **Table constraint:** `UNIQUE (loan_id, object_id)` — an object cannot appear twice on the same loan.
 
@@ -128,7 +130,7 @@ Junction table linking loans to the specific objects they cover. Also records th
 - `ON DELETE RESTRICT` on both FKs: a loan cannot be deleted while it has objects, and an object cannot be deleted while it is on a loan record. Cancelling a loan sets `status = 'Cancelled'` on the `loans` row rather than deleting it.
 - `condition_out` should be recorded before the object leaves. `condition_in` is recorded at return. Both are nullable to allow partial completion.
 - The condition vocabulary matches `objects.condition` deliberately. Any future change to the allowed values must be applied consistently across both tables.
-- `returned_at` is set when the last object on a loan is checked back in; the application should then set `loans.status = 'Returned'`.
+- `returned_at` is set per object when it is checked back in. The application should set `loans.status = 'Returned'` only when every object on the loan has a non-NULL `returned_at` — i.e., `SELECT COUNT(*) FROM loan_objects WHERE loan_id = ? AND returned_at IS NULL` returns 0.
 
 ---
 
@@ -154,6 +156,8 @@ Contact records for individuals and organisations who have donated objects to th
 | created_at           | TIMESTAMPTZ  | NOT NULL DEFAULT NOW()   |                                                                               |
 | updated_at           | TIMESTAMPTZ  | NOT NULL DEFAULT NOW()   |                                                                               |
 
+**Table constraint:** `CHECK (acknowledgment_date IS NULL OR acknowledgment_sent = TRUE)` — prevents `acknowledgment_date` being set without first marking `acknowledgment_sent = TRUE`.
+
 **Indexes:**
 - `name` — donor search
 - `acknowledgment_sent` — filter for pending acknowledgments
@@ -163,7 +167,6 @@ Contact records for individuals and organisations who have donated objects to th
 - `is_anonymous` suppresses the donor name in public-facing contexts (IA publishing, public labels) but the full record is retained internally.
 - `gift_restrictions` applies to all objects donated by this donor. Per-object restrictions are tracked in `objects.provenance` at this stage; a separate `restrictions` table is a future enhancement.
 - `acknowledgment_sent` / `acknowledgment_date` track the most recent acknowledgment. A donor who makes multiple gifts will need the acknowledgment flags reset after each new gift — a full gift history table is a Phase 4 candidate.
-- Add table-level CHECK: `CHECK (acknowledgment_date IS NULL OR acknowledgment_sent = TRUE)` to prevent `acknowledgment_date` being set without `acknowledgment_sent`.
 - The link from a donated object back to its donor is `objects.donor_id` (added by Phase 2 migration above). Multiple donors per object is not supported in Phase 2.
 
 ---
@@ -181,11 +184,11 @@ locations ──── locations (parent_location_id, self-referential, RESTRICT
 
 collections
   └── objects (collection_id → collections.collection_id, RESTRICT on delete)
-        └── media (object_id → objects.object_id, CASCADE on delete)
+        ├── media        (object_id → objects.object_id, CASCADE on delete)
+        └── loan_objects (object_id → objects.object_id, RESTRICT on delete)
 
-loans ──┐
-        ├── loan_objects (loan_id → loans, RESTRICT; object_id → objects, RESTRICT)
-objects ┘
+loans
+  └── loan_objects (loan_id → loans.loan_id, RESTRICT on delete)
 ```
 
 ---
@@ -199,4 +202,4 @@ The following are out of scope for Phase 2 and will be addressed in the Phase 3 
 
 ---
 
-_2026-06-16-1123_
+_2026-06-16-1523_
