@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-16-1302] — Phase 1 Schema Critique Fixes
+
+### Changed
+- `docs/schema_phase1.md`:
+  - Added `maker VARCHAR(255)` to `objects` — artist, maker, manufacturer, or creator; free text with note on controlled vocabulary as a future enhancement
+  - Added `condition_date DATE` to `objects` — structured date of most recent condition assessment; replaces embedding dates in `condition_notes` free text
+  - Added `UNIQUE` constraint to `media.file_path` — prevents two records referencing the same physical file (storage accounting and safe delete)
+  - Added `finding_aid_is_url BOOLEAN NOT NULL DEFAULT FALSE` to `collections` — explicit URL vs free-text flag; avoids heuristic URL detection in the UI
+  - Added single-role limitation note to `users` — one role per user; junction table path documented if combined roles are needed in future
+  - Added `ia_identifier` assignment timing note to `objects` — NULL until Phase 3 upload succeeds; assigned by IA API, not by the registrar
+  - Added accepted MIME types list to `media` notes — `image/jpeg`, `image/tiff`, `image/png`, `image/gif`, `application/pdf`; video and audio deferred
+  - Added single-collection UX note to `collections` — UI should pre-select the only collection when one exists rather than requiring user to choose from a one-item list
+  - Updated document timestamp
+
+---
+
 ## [2026-06-16-1220] — Use Case Critique Fixes + Schema Update
 
 ### Added
@@ -155,6 +171,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Version History Summary
 
-- **2026-06-16** — Use case critique fixes (42 cases total, 6 new UCs); ia_queued added to Phase 1 schema; README documentation table; use cases collection initial release (36 cases); Phase 2 schema design; critique passes on Phase 1 and Phase 2 schemas; deployment model clarified; CHANGELOG added
+- **2026-06-16** — Phase 1 schema critique fixes (maker, condition_date, file_path UNIQUE, finding_aid_is_url, MIME types, single-role note); CHANGELOG timestamps updated to HHMM; use case critique fixes (42 cases, 6 new UCs); ia_queued added to Phase 1 schema; README documentation table; use cases collection (36 cases initial); Phase 2 schema design and critique passes; deployment model clarified; CHANGELOG added
 - **2026-06-15** — Phase 1 schema design (collections, objects, media, users, audit_log) added; README deployment wording improved
 - **2026-06-14** — Project launched: high-level plan converted from HTML and fully revised; README written and refined; critique passes on both documents
