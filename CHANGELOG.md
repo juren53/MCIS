@@ -10,9 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 - `docs/schema_phase2.md` — Phase 2 schema design covering `locations`, `loans`, `loan_objects`, and `donors`; includes Phase 1 migrations (location_id FK, donor_id on objects), full column definitions with types, constraints, indexes, entity relationship diagram, and deferred-to-Phase-3 section
+- `CHANGELOG.md` — project changelog built from all existing commits using Keep a Changelog format
 
 ### Changed
-- `docs/schema_phase2.md` — addressed critique points:
+- `docs/schema_phase2.md` — first critique pass:
   - Added `location_code VARCHAR(50) UNIQUE` to `locations` for labelling and signage
   - Added note on `locations.name` uniqueness limitations at the same hierarchy level
   - Removed `NOT NULL` from `loans.insurance_currency` (nullable when `insurance_value` is null)
@@ -25,6 +26,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - Added `is_active BOOLEAN NOT NULL DEFAULT TRUE` to `donors`
   - Added `acknowledgment CHECK` constraint note to `donors`
   - Fixed entity relationship diagram — `loans` and `objects` are now correctly shown as co-parents of `loan_objects`
+- `docs/schema_phase2.md` — second critique pass:
+  - Removed `DEFAULT 'USD'` from `loans.insurance_currency` — no default; application always writes both fields together
+  - Added `start_date` index to `loans` for fiscal-year and date-range queries
+  - Added `updated_at TIMESTAMPTZ` to `loan_objects` (table has mutable columns — condition_in, returned_at, notes)
+  - Clarified multi-object loan return condition: set `loans.status = 'Returned'` only when all `loan_objects.returned_at` are non-NULL
+  - Promoted `donors` acknowledgment CHECK from note to actual table-level constraint
+  - Added bottom-up deletion note to `locations` (RESTRICT requires children deleted before parent)
+  - Restored `audit_log` to Phase 2 cumulative ER diagram; restructured diagram for clarity
 - `docs/schema_phase1.md` — addressed critique points:
   - Added `ON DELETE RESTRICT` as the default FK behaviour convention
   - Added UTF-8 encoding convention
@@ -91,6 +100,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Version History Summary
 
-- **2026-06-16** — Phase 2 schema design (locations, loans, loan_objects, donors) added; Phase 1 and Phase 2 schema critique points addressed; deployment model clarified in plan
+- **2026-06-16** — Phase 2 schema design added; two critique passes on Phase 2 schema; Phase 1 schema critique pass; deployment model clarified in plan; CHANGELOG added
 - **2026-06-15** — Phase 1 schema design (collections, objects, media, users, audit_log) added; README deployment wording improved
 - **2026-06-14** — Project launched: high-level plan converted from HTML and fully revised; README written and refined; critique passes on both documents
