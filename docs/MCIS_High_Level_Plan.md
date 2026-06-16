@@ -1,6 +1,6 @@
 # MCIS — Museum Collections Information System
 
-_High Level Project Plan — Draft Version 0.2 — 2026-06-16-1311_
+_High Level Project Plan — Draft Version 0.3 — 2026-06-16-1329_
 
 ---
 
@@ -29,7 +29,7 @@ The system is built on a two-tier public/private architecture:
 | Multi-User Ready | Multiple staff and volunteers can work simultaneously from their own workstations, connecting to a shared database. |
 | Modular by Design | Museums adopt only the modules they need. Start with Collections and Objects; add Loans, Donors, and Members as capacity and interest grow. |
 | Data Portable | Museums own their data in a standard, open format. Full export at any time. No vendor lock-in. |
-| Public Access Built In | Internet Archive publishing is a core feature. Publishing an approved collection record to the public is a one-step workflow, not a separate project. |
+| Public Access Built In | Internet Archive publishing is a core feature, available from Phase 1. Publishing an approved collection record to the public is a one-step workflow, not a separate project. |
 | Standards Aligned | Field names, controlled vocabularies, and workflows reflect professional collections management standards (see §5). |
 | Grant Friendly | Open access commitment and IMLS-aligned mission supports grant applications from IMLS, NEH, state humanities councils, and private foundations. |
 | Accessible by Design | UI will be cross-platform and standards-based. |
@@ -55,9 +55,9 @@ MCIS is designed for institutions that are professionally committed to collectio
 
 MCIS is organized into functional modules. Each module integrates into the full MCIS application; smaller institutions can enable only the modules they need.
 
-### Collections & Objects — Phase 1
+### Collections, Objects & Internet Archive Publishing — Phase 1
 
-The foundation of any collections management system.
+The foundation of the system — and the feature that sets MCIS apart from every other open source collections tool.
 
 - Create and manage named collections with accession policies and finding aids (free text or URL)
 - Accession individual objects with full cataloguing fields: title, maker, date made, medium, dimensions, provenance, credit line, rights statement, condition grade, condition notes, and structured condition assessment date
@@ -65,28 +65,23 @@ The foundation of any collections management system.
 - Field-specific and full-text search across the entire catalogue
 - Role-based access control: Admin, Registrar, Staff, Volunteer, and Read-Only — each role has appropriate capabilities
 - Complete audit trail of every record creation, edit, and deletion, with user attribution and before/after field values
+- **Basic IA Publisher** — Registrar flags objects for publication; Admin approves; the system uploads the object record with its primary image and core metadata (title, maker, date, description, rights statement) to the museum's Internet Archive collection; IA identifier is written back to the object record; publication status is visible on every object
 
 ### Locations, Loans & Donors — Phase 2
 
-The operational core for a working museum or historical society.
+The operational core for a working museum or historical society, paired with a full-featured IA publisher.
 
 - **Locations** — Hierarchical location tree (building → room → case → shelf); record where every object is; full movement history; off-site and loan-destination locations
 - **Loans** — Outgoing and incoming loan agreements with multi-object support; condition-out / condition-in recording; insurance value and currency; return deadlines and overdue alerts; loan status (Pending, Active, Returned, Cancelled)
 - **Donors** — Individual and organization donor records; link donated objects to their donors; gift restrictions; acknowledgment letter generation; anonymous donor flag with public suppression; deactivation for deceased or lapsed donors
+- **Full IA Publisher** — Configurable field mapping UI (MCIS fields → IA metadata); batch publish queue management and dashboard; update and unpublish support; multi-image upload
 
-### Internet Archive Publishing — Phase 3
-
-- Registrar-controlled publish queue: flag objects for publication; Admin approves; system batches the upload overnight or on demand
-- Field mapping from MCIS cataloguing fields to Internet Archive metadata (Dublin Core compatible)
-- Publish, update, and unpublish per object
-- Publication status (queued / published / not published) visible on every object record
-
-### Operations Modules — Phase 4
+### Operations Modules — Phase 3
 
 - **Members / Comms** — Membership tiers, renewal tracking, lapsed-member outreach lists, newsletter distribution
 - **Inventory** — Equipment and supply records, vendor contacts, maintenance schedules
 
-### Data Migration — Phase 6
+### Data Migration — Phase 5
 
 - CSV/Excel import with configurable field mapping — for institutions migrating from spreadsheets
 - Support for LIDO and other standard museum data interchange formats
@@ -102,7 +97,7 @@ MCIS field names and controlled vocabularies are informed by established collect
 | :--- | :--- |
 | **Dublin Core** | Core descriptive fields — title, maker (creator), date made, description, rights statement — map directly to Dublin Core elements; used as the basis for Internet Archive metadata export |
 | **SPECTRUM** (Collections Trust, UK) | Object accession, object entry, location and movement control, loans in/out, condition checking, and the audit trail align with SPECTRUM unit of practice definitions; the workflow design in the use case library explicitly references SPECTRUM procedures |
-| **LIDO** (Lightweight Information Describing Objects) | Phase 6 data migration tools will support LIDO XML import/export for interoperability with digital aggregators |
+| **LIDO** (Lightweight Information Describing Objects) | Phase 5 data migration tools will support LIDO XML import/export for interoperability with digital aggregators |
 | **AAM Core Standards** | Object records include the fields required by American Alliance of Museums Core Standards for Collections Stewardship: unique accession number, title, provenance, rights statement, and condition |
 | **IMLS Data Stewardship** | Audit logging, data export, and backup guidance align with IMLS data stewardship expectations for grantees; the rights statement field is required before any object can be published publicly |
 
@@ -118,7 +113,7 @@ MCIS is a desktop application — not a web application. This is a deliberate ch
 | :--- | :--- | :--- |
 | Desktop client | Python / PySide6 | Runs on Windows, Linux, and macOS. Free to distribute. Staff install it and use it — no browser required. |
 | Database | PostgreSQL | A mature, professional-grade database. Runs on existing hardware. Concurrent access by multiple staff simultaneously. Free and open source. |
-| IA Publishing | internetarchive library | The official Internet Archive tool for metadata upload — ensures compatibility with IA's current and future API. |
+| IA Publishing | internetarchive library | The official Internet Archive tool for metadata and file upload — ensures compatibility with IA's current and future API. |
 | Packaging | PyInstaller | Staff install MCIS like any other desktop application. No Python installation or technical knowledge required on their machines. |
 
 **Single-user option:** A SQLite fallback is planned for very small institutions with only one user — in this mode, no separate database server is required at all. The database lives in a single file alongside the application.
@@ -142,41 +137,33 @@ Development proceeds in phases. Each phase produces a testable, usable milestone
 
 *Milestone: Schema documented and reviewed, repository public, use cases complete.*
 
-### Phase 1 — Core Framework
+### Phase 1 — Core Framework + Basic IA Publishing
 
-*A working collections database that any registrar can use from day one.*
+*A working collections database with Internet Archive publishing from day one.*
 
 - Application shell: database connection, user login, role-based access control
 - Collections module: create and manage named collections with policies and finding aids
 - Objects module: full accession record with image and document attachment
 - Audit log: complete change history with user attribution and before/after field values
+- **Basic IA Publisher:** Registrar flags object for publication; Admin approves; system uploads object record with primary image and core metadata (title, maker, date, description, rights statement) to the museum's IA collection; IA identifier written back to the object record; publication status tracked per object
+- IA configuration: IA account credentials and target collection identifier stored in application settings
 
-*Milestone: A registrar can log in, create a collection, accession objects with images, and search the catalogue.*
+*Milestone: A registrar can log in, accession objects with images, and publish an approved record to Internet Archive.*
 
-### Phase 2 — Collections Modules
+### Phase 2 — Collections Modules + Full IA Publisher
 
-*Full operational capability for a working museum.*
+*Full operational capability and a complete Internet Archive publishing workflow.*
 
 - Locations: hierarchical location tracking, movement history, off-site locations
 - Loans: outgoing and incoming loan agreements, condition-out/in, insurance, overdue alerts
 - Donors: records linked to donated objects, gift restrictions, acknowledgment letters
+- **Full IA Publisher:** configurable field mapping UI; batch publish queue management and dashboard; update and unpublish support; multi-image upload to IA
 - Cross-module search and reporting
 - Packaged installer for Windows and Linux
 
-*Milestone: A registrar can record a multi-object loan, track an object's location history across years, and generate a donor acknowledgment letter.*
+*Milestone: A registrar can record a multi-object loan, track location history, generate a donor acknowledgment letter, and manage the full IA publish queue.*
 
-### Phase 3 — Internet Archive Publishing
-
-*Public access for the museum's collection — a permanent, searchable online presence at no cost.*
-
-- Publish queue: registrar flags objects; Admin approves; system batches the upload
-- Dublin Core field mapping from MCIS records to IA metadata
-- Publish, update, and unpublish per object
-- Publication status visible on every object record
-
-*Milestone: An approved object record with a rights statement can be published to Internet Archive in a single workflow step.*
-
-### Phase 4 — Operations Modules
+### Phase 3 — Operations Modules
 
 *Expand beyond collections into broader museum administration.*
 
@@ -185,7 +172,7 @@ Development proceeds in phases. Each phase produces a testable, usable milestone
 
 *Milestone: Member renewals can be tracked and a lapsed-member contact list exported.*
 
-### Phase 5 — Community & Sustainability
+### Phase 4 — Community & Sustainability
 
 *Grow MCIS into a self-sustaining open source project.*
 
@@ -197,7 +184,7 @@ Development proceeds in phases. Each phase produces a testable, usable milestone
 
 *Milestone: Documentation site live, demo database available for download, at least one external contributor.*
 
-### Phase 6 — Data Migration
+### Phase 5 — Data Migration
 
 *Help institutions that already have data bring it in.*
 
@@ -237,9 +224,9 @@ The schema and use case work is complete. The next step is beginning Phase 1 app
 | Argus | Enterprise pricing | Mid–Large | No | No |
 | The Museum System (TMS) | Enterprise pricing | Large | No | No |
 | CollectiveAccess | Free | Small–Large | Yes | No |
-| MCIS *(in development)* | Free | Small | Yes | Yes — built in |
+| MCIS *(in development)* | Free | Small | Yes | Yes — Phase 1 |
 
-CollectiveAccess is the closest open source peer — a capable, mature system with a strong community. It is, however, a web application requiring a PHP web server, database server, and ongoing server administration. For a small historical society with no IT staff, that deployment burden is often prohibitive regardless of software cost. MCIS offers a simpler path: download the installer, point it at the database, and begin cataloguing.
+CollectiveAccess is the closest open source peer — a capable, mature system with a strong community. It is, however, a web application requiring a PHP web server, database server, and ongoing server administration. For a small historical society with no IT staff, that deployment burden is often prohibitive regardless of software cost. MCIS offers a simpler path: download the installer, point it at the database, and begin cataloguing — with Internet Archive publishing available from the first release.
 
 ---
 
@@ -276,4 +263,4 @@ CollectiveAccess is the closest open source peer — a capable, mature system wi
 
 ---
 
-_2026-06-16-1324_
+_2026-06-16-1329_

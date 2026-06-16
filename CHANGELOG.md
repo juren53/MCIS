@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-16-1329] — Move IA Publishing to Phase 1
+
+### Changed
+- `docs/MCIS_High_Level_Plan.md` — v0.2 → v0.3; Internet Archive publishing moved from standalone Phase 3 into Phase 1 as a core capability:
+  - §2 "Public Access Built In" principle updated — publishing available from Phase 1
+  - §4 Phase 1 section renamed "Collections, Objects & Internet Archive Publishing — Phase 1"; added Basic IA Publisher bullet (flag → approve → upload primary image + core metadata → write-back ia_identifier)
+  - §4 Phase 2 section updated — Full IA Publisher added (configurable field mapping UI, batch queue dashboard, update/unpublish, multi-image upload)
+  - §4 standalone "Internet Archive Publishing — Phase 3" section removed
+  - §4 Operations Modules renumbered Phase 4 → Phase 3; Data Migration renumbered Phase 6 → Phase 5
+  - §5 LIDO reference updated Phase 6 → Phase 5
+  - §7 Phase 1 milestone updated to include basic IA publishing
+  - §7 Phase 2 milestone updated to include full IA publisher
+  - §7 standalone Phase 3 (Publishing) removed; old Phase 4/5/6 renumbered to Phase 3/4/5
+  - §9 Competitive Landscape IA Integration column updated — "Yes — Phase 1" (was "Yes — built in")
+  - §9 closing paragraph updated to note IA publishing available from first release
+
+---
+
 ## [2026-06-16-1324] — Simplify Accessible by Design Principle
 
 ### Changed
