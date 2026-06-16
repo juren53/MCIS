@@ -178,7 +178,6 @@ Development proceeds in phases. Each phase produces a testable, usable milestone
 
 - Public documentation site (ReadTheDocs or GitHub Pages)
 - Demo database with a realistic fictional museum for evaluation and training
-- IMLS and foundation grant applications leveraging open access mission
 - Contributor onboarding guide and community governance model
 - Plugin API for community-contributed modules
 
@@ -263,4 +262,4 @@ CollectiveAccess is the closest open source peer — a capable, mature system wi
 
 ---
 
-_2026-06-16-1329_
+_2026-06-16-1342_

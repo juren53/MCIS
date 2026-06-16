@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-16-1342] — Drop Grant Applications Bullet from Phase 4
+
+### Changed
+- `docs/MCIS_High_Level_Plan.md` — removed "IMLS and foundation grant applications leveraging open access mission" from Phase 4 deliverables; vague aspirational boilerplate for an audience that knows the grant landscape; "Grant Friendly" principle in §2 carries that message adequately
+
+---
+
 ## [2026-06-16-1329] — Move IA Publishing to Phase 1
 
 ### Changed
