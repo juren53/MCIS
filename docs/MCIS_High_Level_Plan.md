@@ -228,3 +228,7 @@ CollectiveAccess is the closest open source peer, but it is a web-based PHP appl
 | TMS       | The Museum System — a commercial collections management software by Gallery Systems.             |
 | VPS       | Virtual Private Server — a rented virtual machine hosted in a cloud data center.                 |
 | WCAG      | Web Content Accessibility Guidelines — accessibility standards published by the W3C.             |
+
+---
+
+_2026-06-16-1101_
