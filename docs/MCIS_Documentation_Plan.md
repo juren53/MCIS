@@ -1,6 +1,6 @@
 # MCIS Documentation Plan
 
-_Draft Version 0.3 — 2026-06-16-1444_
+_Draft Version 0.4 — 2026-06-16-1526_
 
 This document tracks all MCIS documentation — completed, in progress, and planned. Each document is assigned a target phase, a primary audience, and a brief description of its scope.
 
@@ -12,7 +12,7 @@ This document tracks all MCIS documentation — completed, in progress, and plan
 | :--- | :--- |
 | Complete | 7 |
 | In Progress | 0 |
-| Planned | 10 |
+| Planned | 11 |
 
 ---
 
@@ -44,8 +44,9 @@ Documents are listed in the phase when they are expected to be drafted. All date
 
 | Document | Audience | Description |
 | :--- | :--- | :--- |
-| **Deployment Guide** | Sysadmin, IT support | Step-by-step installation instructions: PostgreSQL setup and database creation; client installation on Windows, Linux, and macOS; first-run configuration; Internet Archive credential setup; backup configuration. Includes a Docker Compose option for easier deployment. |
-| **System Architecture Document** | Developers, contributors | Detailed technical architecture: project and module structure; database connection and connection pooling; SQLAlchemy ORM layer and event listeners; audit log implementation; role-based access control enforcement; IA publisher integration pattern; SQLite single-user fallback |
+| **Deployment Guide** | Sysadmin, IT support | Step-by-step installation instructions: PostgreSQL setup and database creation; client installation on Windows, Linux, and macOS; first-run configuration; Internet Archive credential setup; automated daily backup schedule and off-site copy instructions. Includes a guided setup option for easier installation. |
+| **System Architecture Document** | Developers, contributors | Detailed technical reference for developers: application and module structure; database connection layer; audit log design; role-based access control implementation; Internet Archive publisher integration; single-file database fallback. Intended for contributors building or extending MCIS. |
+| **Test Plan** | Developers, contributors | Automated test strategy and structure: test framework and tooling; unit, integration, and end-to-end test coverage goals; how to run the test suite locally; conventions for writing new tests; CI test execution. |
 | **Administrator Guide** | Admin users | User management (create, edit, deactivate); role assignment; system configuration; database backup and restore procedures; troubleshooting common issues |
 | **User Guide: Collections & Objects** | Registrars, Staff, Volunteers | How to use the Collections and Objects modules: creating collections, accessioning objects, attaching images and documents, condition assessments, searching and browsing the catalogue, flagging objects for Internet Archive publication. Includes the Phase 1 basic IA publishing workflow (flag → approve → publish → status). |
 
@@ -85,4 +86,4 @@ Documents are listed in the phase when they are expected to be drafted. All date
 
 ---
 
-_2026-06-16-1444_
+_2026-06-16-1526_
