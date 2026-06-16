@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-16-1444] — Documentation Plan Critique Fixes (v0.3)
+
+### Changed
+- `docs/MCIS_Documentation_Plan.md` — seven critique points addressed:
+  - Document lists itself in the Complete section; count updated 6 → 7
+  - In Progress placeholder section added
+  - User Guide: Collections & Objects description notes it covers Phase 1 basic IA publishing workflow
+  - IA Publisher Guide description clarified as Phase 2 full workflow; cross-references Phase 1 coverage
+  - Schema document audience updated to include advisory board for both Phase 1 and Phase 2 entries
+  - "LoanObjects" corrected to "loan_objects" in Phase 2 schema description
+  - Phase 3–5 schema note rewritten for clarity
+  - Use case audience updated from "testers" to "pilot institutions"
+  - Version bumped to 0.3
+
+---
+
 ## [2026-06-16-1437] — Documentation Plan
 
 ### Added

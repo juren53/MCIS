@@ -1,6 +1,6 @@
 # MCIS Documentation Plan
 
-_Draft Version 0.1 — 2026-06-16-1437_
+_Draft Version 0.3 — 2026-06-16-1444_
 
 This document tracks all MCIS documentation — completed, in progress, and planned. Each document is assigned a target phase, a primary audience, and a brief description of its scope.
 
@@ -10,7 +10,7 @@ This document tracks all MCIS documentation — completed, in progress, and plan
 
 | Status | Count |
 | :--- | :--- |
-| Complete | 6 |
+| Complete | 7 |
 | In Progress | 0 |
 | Planned | 10 |
 
@@ -21,11 +21,18 @@ This document tracks all MCIS documentation — completed, in progress, and plan
 | Document | Location | Audience | Description |
 | :--- | :--- | :--- | :--- |
 | High Level Project Plan | `docs/MCIS_High_Level_Plan.md` | Stakeholders, advisory board, contributors | Strategic overview: goals, target institutions, module architecture, phased roadmap, competitive landscape, risks |
-| Phase 1 Database Schema | `docs/schema_phase1.md` | Developers, contributors | Full schema for Phase 1 entities: Collections, Objects, Media, Users, AuditLog; conventions, indexes, design decisions, ER diagram |
-| Phase 2 Database Schema | `docs/schema_phase2.md` | Developers, contributors | Full schema for Phase 2 entities: Locations, Loans, LoanObjects, Donors; Phase 1 migrations, indexes, ER diagram |
-| Use Case Library | `docs/use_cases/` | Developers, advisory board, testers | 42 use cases documenting operational workflows for every module; includes negative cases for constraint and role enforcement |
+| Phase 1 Database Schema | `docs/schema_phase1.md` | Developers, contributors, advisory board | Full schema for Phase 1 entities: Collections, Objects, Media, Users, AuditLog; conventions, indexes, design decisions, ER diagram |
+| Phase 2 Database Schema | `docs/schema_phase2.md` | Developers, contributors, advisory board | Full schema for Phase 2 entities: Locations, Loans, loan_objects, Donors; Phase 1 migrations, indexes, ER diagram |
+| Use Case Library | `docs/use_cases/` | Developers, advisory board, pilot institutions | 42 use cases documenting operational workflows for every module; includes negative cases for constraint and role enforcement |
 | README | `README.md` | All | Concise project summary; links to all key documents |
 | CHANGELOG | `CHANGELOG.md` | All | Running record of all notable project changes with datetime-stamped entries |
+| Documentation Plan | `docs/MCIS_Documentation_Plan.md` | All | This document — tracks all project documentation: complete, in progress, and planned |
+
+---
+
+## In Progress
+
+*None at this time.*
 
 ---
 
@@ -40,14 +47,14 @@ Documents are listed in the phase when they are expected to be drafted. All date
 | **Deployment Guide** | Sysadmin, IT support | Step-by-step installation instructions: PostgreSQL setup and database creation; client installation on Windows, Linux, and macOS; first-run configuration; Internet Archive credential setup; backup configuration. Includes a Docker Compose option for easier deployment. |
 | **System Architecture Document** | Developers, contributors | Detailed technical architecture: project and module structure; database connection and connection pooling; SQLAlchemy ORM layer and event listeners; audit log implementation; role-based access control enforcement; IA publisher integration pattern; SQLite single-user fallback |
 | **Administrator Guide** | Admin users | User management (create, edit, deactivate); role assignment; system configuration; database backup and restore procedures; troubleshooting common issues |
-| **User Guide: Collections & Objects** | Registrars, Staff, Volunteers | How to use the Collections and Objects modules: creating collections, accessioning objects, attaching images and documents, condition assessments, searching and browsing the catalogue, flagging objects for Internet Archive publication |
+| **User Guide: Collections & Objects** | Registrars, Staff, Volunteers | How to use the Collections and Objects modules: creating collections, accessioning objects, attaching images and documents, condition assessments, searching and browsing the catalogue, flagging objects for Internet Archive publication. Includes the Phase 1 basic IA publishing workflow (flag → approve → publish → status). |
 
 ### Phase 2 — Collections Modules
 
 | Document | Audience | Description |
 | :--- | :--- | :--- |
 | **User Guide: Locations, Loans & Donors** | Registrars, Staff | How to use the Locations, Loans, and Donors modules: managing the location hierarchy, recording object movements, creating and managing loan agreements, recording condition-out/in, donor records and acknowledgment letters |
-| **Internet Archive Publisher Guide** | Registrars, Admins | Setting up an Internet Archive account and collection; configuring field mapping; managing the publish queue; publishing, updating, and unpublishing records; understanding publish status indicators |
+| **Internet Archive Publisher Guide** | Registrars, Admins | Full Phase 2 IA publishing workflow: setting up an Internet Archive account and collection; configuring field mapping (MCIS fields → IA metadata); managing the batch publish queue; publishing, updating, and unpublishing records. Basic Phase 1 IA publishing is covered in the User Guide: Collections & Objects. |
 
 ### Phase 3 — Operations Modules
 
@@ -74,8 +81,8 @@ Documents are listed in the phase when they are expected to be drafted. All date
 
 - User guides will be written module-by-module as each Phase reaches completion, not in advance. Writing user documentation before the UI is final produces documentation that immediately needs rewriting.
 - The Deployment Guide is the highest-priority planned document — it is needed before any pilot institution can begin testing Phase 1.
-- Schema documents for Phases 3–5 (Operations, Community, Data Migration) will be drafted as those phases are scoped. They are not planned at this time.
+- No schema documents are planned for Phases 3–5. Operations and Data Migration modules will be designed when those phases are scoped; Community & Sustainability (Phase 4) involves no new database entities.
 
 ---
 
-_2026-06-16-1437_
+_2026-06-16-1444_
