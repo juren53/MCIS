@@ -1,6 +1,6 @@
 # MCIS — Museum Collections Information System
 
-_High Level Project Plan — Draft Version 0.4 — 2026-06-16-1401_
+_High Level Project Plan — Draft Version 0.5 — 2026-06-16-1417_
 
 ---
 
@@ -57,7 +57,7 @@ MCIS is organized into functional modules. Each module integrates into the full 
 
 ### Collections, Objects & Internet Archive Publishing
 
-The foundation of the system — and the feature that sets MCIS apart from every other open source collections tool.
+The foundation of any collections management system — with the feature that sets MCIS apart built in from the first release: direct Internet Archive publishing.
 
 - Create and manage named collections with accession policies and finding aids (free text or URL)
 - Accession individual objects with full cataloguing fields: title, maker, date made, medium, dimensions, provenance, credit line, rights statement, condition grade, condition notes, and structured condition assessment date
@@ -132,8 +132,8 @@ Development proceeds in phases. Each phase produces a testable, usable milestone
 
 - GitHub repository created, README and project documentation published
 - Full database schema designed and documented for Phase 1 (Collections, Objects, Media, Users, Audit) and Phase 2 (Locations, Loans, Donors)
-- 42 use cases written to validate schema correctness and guide UI development
-- Advisory board [TBD] engagement begun
+- A collection of use cases documenting operational workflows for every module
+- Advisory board [TBD] — formation underway
 
 *Milestone: Schema documented and reviewed, repository public, use cases complete.*
 
@@ -159,7 +159,7 @@ Development proceeds in phases. Each phase produces a testable, usable milestone
 - Donors: records linked to donated objects, gift restrictions, acknowledgment letters
 - **Full IA Publisher:** configurable field mapping UI; batch publish queue management and dashboard; update and unpublish support; multi-image upload to IA
 - Cross-module search and reporting
-- Packaged installer for Windows and Linux
+- Packaged installer for Windows, Linux, and macOS
 
 *Milestone: A registrar can record a multi-object loan, track location history, generate a donor acknowledgment letter, and manage the full IA publish queue.*
 
@@ -219,7 +219,7 @@ The schema and use case work is complete. The next step is beginning Phase 1 app
 
 | System | Cost | Target Size | Open Source | IA Integration |
 | :--- | :--- | :--- | :--- | :--- |
-| PastPerfect Online | Subscription fee | Small–Mid | No | No |
+| PastPerfect (Desktop & Online) | Free–Subscription | Small–Mid | No | No |
 | Argus | Enterprise pricing | Mid–Large | No | No |
 | The Museum System (TMS) | Enterprise pricing | Large | No | No |
 | CollectiveAccess | Free | Small–Large | Yes | No |
@@ -237,7 +237,7 @@ CollectiveAccess is the closest open source peer — a capable, mature system wi
 | Adoption by target institutions | Pilot museum programme; realistic demo database for evaluation; advisory board [TBD] endorsement lends credibility to early adopters |
 | Schema decisions diverge from practice | Advisory board [TBD] review before Phase 1 development begins; use case library documents the expected behaviour at every step |
 | PostgreSQL complexity for non-technical staff | Docker Compose deployment option; step-by-step setup guide; SQLite single-user fallback |
-| Internet Archive API changes | Abstract the publish interface so the backend can be swapped; pin to a stable library version |
+| Internet Archive API changes | The publishing component is designed to be updated independently if the Internet Archive API changes; pin to a stable, tested version. |
 | Scope creep | Strict module boundaries and phased roadmap |
 | Data loss | Deployment guide includes automated daily backup schedules and off-site backup instructions; aligns with IMLS data stewardship guidance |
 | Donor and member PII | Encrypted database connections required; deployment guide covers encryption-at-rest options and data retention policy |
@@ -258,4 +258,4 @@ CollectiveAccess is the closest open source peer — a capable, mature system wi
 | TMS | The Museum System — a commercial collections management platform by Gallery Systems (now Axiell). |
 ---
 
-_2026-06-16-1401_
+_2026-06-16-1417_

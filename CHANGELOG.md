@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-16-1417] — Address Second Plan Critique Pass (v0.5)
+
+### Changed
+- `docs/MCIS_High_Level_Plan.md` — seven critique points addressed:
+  - §4 opening claim rewritten — differentiator is IA publishing specifically, not all of Phase 1
+  - Phase 0 use case bullet reworded: "a collection of use cases documenting operational workflows for every module"
+  - macOS added to Phase 2 packaged installer (was inconsistent with §6 technology table)
+  - "Advisory board [TBD] engagement begun" → "Advisory board [TBD] — formation underway"
+  - §10 IA API risk mitigation rewritten in plain language (removed "abstract the publish interface")
+  - PastPerfect entry broadened to "PastPerfect (Desktop & Online)" with "Free–Subscription" cost — legacy desktop version widely used among target institutions
+  - Version bumped to 0.5
+
+---
+
 ## [2026-06-16-1401] — Address Plan Critique Points (v0.4)
 
 ### Changed
