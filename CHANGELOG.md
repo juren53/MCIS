@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-16-1347] — Drop WCAG from Glossary
+
+### Changed
+- `docs/MCIS_High_Level_Plan.md` — removed WCAG entry from glossary; not referenced in the document body and not relevant to this audience
+
+---
+
 ## [2026-06-16-1342] — Drop Grant Applications Bullet from Phase 4
 
 ### Changed

@@ -258,8 +258,6 @@ CollectiveAccess is the closest open source peer — a capable, mature system wi
 | SPECTRUM | Collections management standard published by Collections Trust (UK) — widely adopted internationally as a benchmark for collections management procedures. |
 | TMS | The Museum System — a commercial collections management platform by Gallery Systems (now Axiell). |
 | VPS | Virtual Private Server — a rented virtual machine hosted in a cloud data centre. |
-| WCAG | Web Content Accessibility Guidelines — accessibility standards published by the W3C. |
-
 ---
 
-_2026-06-16-1342_
+_2026-06-16-1347_
