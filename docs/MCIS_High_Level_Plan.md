@@ -1,6 +1,6 @@
 # MCIS — Museum Collections Information System
 
-_High Level Project Plan — Draft Version 0.13 — 2026-06-17-1300_
+_High Level Project Plan — Draft Version 0.14 — 2026-06-17-1302_
 
 ---
 
@@ -140,7 +140,6 @@ Development proceeds in phases. Each phase produces a testable, usable milestone
 - GitHub repository created, README and project documentation published
 - Full database schema designed and documented for Phase 1 (Collections, Objects, Media, Users, Audit) and Phase 2 (Members, Donors, Locations, Loans)
 - A collection of use cases documenting operational workflows for every module
-- Advisory board [TBD] — formation underway
 
 *Milestone reached: Schema documented and reviewed, repository public, use cases complete.*
 
@@ -218,7 +217,6 @@ MCIS is in **Phase 0 — Project Infrastructure**.
 | Use case library | Complete |
 | QR Code Generator module repository | Complete |
 | Open source license | In progress |
-| Advisory board [TBD] engagement | In progress |
 | Phase 1 application development | Not yet started |
 
 The schema and use case work is complete. The next step is beginning Phase 1 application development, with advisory board [TBD] review of the schema documents planned for the same period.
@@ -323,4 +321,4 @@ Testing confirmed that printed QR codes scan measurably faster than codes displa
 | TMS | The Museum System — a commercial collections management platform by Gallery Systems (now Axiell). |
 ---
 
-_2026-06-17-1300_
+_2026-06-17-1302_

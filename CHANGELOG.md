@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-17-1302] — Remove advisory board from Phase 0 scope (v0.14)
+
+### Changed
+- `docs/MCIS_High_Level_Plan.md` — §7 Phase 0: advisory board bullet removed; advisory board formation is ongoing and not a Phase 0 gate
+- `docs/MCIS_High_Level_Plan.md` — §8 status table: advisory board row removed; version bumped to 0.14
+
+---
+
 ## [2026-06-17-1300] — Swap Phase 4 and Phase 5 (v0.13 / Doc Plan v0.7)
 
 ### Changed
