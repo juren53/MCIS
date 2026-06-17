@@ -1,6 +1,6 @@
 # MCIS Documentation Plan
 
-_Draft Version 0.6 — 2026-06-17-1246_
+_Draft Version 0.7 — 2026-06-17-1300_
 
 This document tracks all MCIS documentation — completed, in progress, and planned. Each document is assigned a target phase, a primary audience, and a brief description of its scope.
 
@@ -70,17 +70,17 @@ Documents are listed in the phase when they are expected to be drafted. All date
 | :--- | :--- | :--- |
 | **User Guide: Inventory** | Staff | How to use the Inventory module: equipment and supply records, maintenance schedules |
 
-### Phase 4 — Community & Sustainability
-
-| Document | Audience | Description |
-| :--- | :--- | :--- |
-| **Extension Developer Guide** | Developers | How to build new modules using the MCIS extension framework: module registration, UI integration points, database migration conventions, packaging and distribution. Contingent on extension framework design — to be scoped before this document is drafted. |
-
-### Phase 5 — Data Migration
+### Phase 4 — Data Migration
 
 | Document | Audience | Description |
 | :--- | :--- | :--- |
 | **Data Migration Guide** | Registrars, Sysadmin | How to import existing collection data into MCIS: CSV/Excel import with field mapping; PastPerfect data export handling; LIDO XML import; batch image import with IPTC metadata extraction and association; validation and error reporting |
+
+### Phase 5 — Community & Sustainability
+
+| Document | Audience | Description |
+| :--- | :--- | :--- |
+| **Extension Developer Guide** | Developers | How to build new modules using the MCIS extension framework: module registration, UI integration points, database migration conventions, packaging and distribution. Contingent on extension framework design — to be scoped before this document is drafted. |
 
 ---
 
@@ -92,4 +92,4 @@ Documents are listed in the phase when they are expected to be drafted. All date
 
 ---
 
-_2026-06-17-1246_
+_2026-06-17-1300_

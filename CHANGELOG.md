@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-17-1300] — Swap Phase 4 and Phase 5 (v0.13 / Doc Plan v0.7)
+
+### Changed
+- `docs/MCIS_High_Level_Plan.md` — Phase 4 and Phase 5 swapped: Data Migration moves to Phase 4, Community & Sustainability moves to Phase 5; pilot institutions need migration tooling before community infrastructure; §5 LIDO reference updated Phase 5 → Phase 4; version bumped to 0.13
+- `docs/MCIS_Documentation_Plan.md` — Phase 4 and Phase 5 sections swapped to match High Level Plan; version bumped to 0.7
+
+---
+
 ## [2026-06-17-1255] — Add QR Code Generator prototype to Prior Work (v0.12)
 
 ### Added

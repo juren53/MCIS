@@ -1,6 +1,6 @@
 # MCIS — Museum Collections Information System
 
-_High Level Project Plan — Draft Version 0.12 — 2026-06-17-1255_
+_High Level Project Plan — Draft Version 0.13 — 2026-06-17-1300_
 
 ---
 
@@ -68,6 +68,7 @@ The foundation of any collections management system — with the feature that se
 - Role-based access control: Admin, Registrar, Staff, Volunteer, and Read-Only — each role has appropriate capabilities
 - Complete audit trail of every record creation, edit, and deletion, with user attribution and before/after field values
 - **Basic IA Publisher** — Registrar flags objects for publication; Admin approves; the system uploads the object record with its primary image and core metadata (title, maker, date, description, rights statement) to the museum's Internet Archive collection; IA identifier is written back to the object record; publication status is visible on every object
+- **QR Code Generator** *(standalone module)* — Once an IA identifier is assigned, generates a printable QR code label (PNG or PDF) for display beside the artifact in the Museum; visitors scan with a smartphone camera and reach the artifact's IA page directly; see [github.com/juren53/qr-code-generator](https://github.com/juren53/qr-code-generator)
 
 ### Members, Donors, Locations & Loans
 
@@ -84,15 +85,6 @@ The operational core for a working museum or historical society, paired with a f
 *Additional operations modules may be scoped here as requirements emerge.*
 
 - **Inventory** — Equipment and supply records, vendor contacts, maintenance schedules
-
-### QR Code Generator
-
-A standalone module — maintained in a separate repository — that generates printable QR codes linking physical Museum artifacts to their Internet Archive records.
-
-- When an object is published to IA via the Basic IA Publisher and an `ia_identifier` is assigned, the QR Code Generator produces a printable label (PNG or PDF) for that artifact
-- The printed code is displayed beside the artifact in the Museum; visitors scan it with a smartphone camera — no app required — and reach the artifact's IA page directly, with its image, title, description, and metadata
-- Phase 2: batch label generation for large sets of objects published via the Full IA Publisher
-- Module repository: [github.com/juren53/qr-code-generator](https://github.com/juren53/qr-code-generator)
 
 ### Data Migration
 
@@ -111,7 +103,7 @@ MCIS field names and controlled vocabularies are informed by established collect
 | **Dublin Core** | Core descriptive fields — title, maker (creator), date made, description, rights statement — map directly to Dublin Core elements; used as the basis for Internet Archive metadata export |
 | **IPTC** (International Press Telecommunications Council) | Image metadata fields — headline (title), caption (description), object name (accession number), byline (photographer), credit, source (collection), copyright notice (restrictions) — are embedded directly in attached image files using ExifTool; field mapping proven in the HSTL photo pipeline and Tag Writer |
 | **SPECTRUM** (Collections Trust, UK) | Object accession, object entry, location and movement control, loans in/out, condition checking, and the audit trail align with SPECTRUM unit of practice definitions; the workflow design in the use case library explicitly references SPECTRUM procedures |
-| **LIDO** (Lightweight Information Describing Objects) | Phase 5 data migration tools will support LIDO XML import/export for interoperability with digital aggregators |
+| **LIDO** (Lightweight Information Describing Objects) | Phase 4 data migration tools will support LIDO XML import/export for interoperability with digital aggregators |
 | **AAM Standards** | Object records include the fields required by the *National Standards and Best Practices for U.S. Museums* (American Alliance of Museums, 2008): unique accession number, title, provenance, rights statement, and condition |
 | **IMLS Data Stewardship** | Audit logging, data export, and backup guidance align with IMLS data stewardship expectations for grantees; the rights statement field is required before any object can be published publicly |
 
@@ -189,7 +181,17 @@ Development proceeds in phases. Each phase produces a testable, usable milestone
 
 *Milestone: Equipment and supply records are tracked and a maintenance schedule can be produced.*
 
-### Phase 4 — Community & Sustainability
+### Phase 4 — Data Migration
+
+*Help institutions that already have data bring it in.*
+
+- CSV/Excel import with configurable field mapping — drawing on batch processing and Unicode handling experience from the HSTL photo and audio metadata pipelines
+- LIDO and other standard interchange format support
+- Batch image import with IPTC metadata extraction and automatic object association
+
+*Milestone: A museum can import a full spreadsheet or PastPerfect data export and review the results in MCIS.*
+
+### Phase 5 — Community & Sustainability
 
 *Grow MCIS into a self-sustaining open source project.*
 
@@ -199,16 +201,6 @@ Development proceeds in phases. Each phase produces a testable, usable milestone
 - An extension framework allowing other developers to contribute new modules
 
 *Milestone: Documentation site live, demo database available for download, at least one external contributor.*
-
-### Phase 5 — Data Migration
-
-*Help institutions that already have data bring it in.*
-
-- CSV/Excel import with configurable field mapping — drawing on batch processing and Unicode handling experience from the HSTL photo and audio metadata pipelines
-- LIDO and other standard interchange format support
-- Batch image import with IPTC metadata extraction and automatic object association
-
-*Milestone: A museum can import a full spreadsheet or PastPerfect data export and review the results in MCIS.*
 
 ---
 
@@ -331,4 +323,4 @@ Testing confirmed that printed QR codes scan measurably faster than codes displa
 | TMS | The Museum System — a commercial collections management platform by Gallery Systems (now Axiell). |
 ---
 
-_2026-06-17-1255_
+_2026-06-17-1300_
