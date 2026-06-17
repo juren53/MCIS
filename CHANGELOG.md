@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-17-1253] — Establish QR Code Generator as first standalone MCIS module
+
+### Added
+- QR Code Generator — standalone module at [github.com/juren53/qr-code-generator](https://github.com/juren53/qr-code-generator); generates printable QR codes (PNG/PDF) linking physical Museum artifacts to their Internet Archive records; triggered when an `ia_identifier` is assigned to an object following IA publication; prototype developed for WHM (Whitehead Home Museum) with test codes for a ship's bell and bridge clock artifact; module is independent of the MCIS core application and can be adopted separately
+
+---
+
 ## [2026-06-17-1246] — Update Documentation Plan for QR Code Generator (v0.6)
 
 ### Added
