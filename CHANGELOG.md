@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-17-1711] — Sync README with High Level Plan
+
+### Changed
+- `README.md` — Key principles: "Simple to Operate" wording aligned with High Level Plan v0.16 (intuitive/easy use for experienced museum and archive staff; dropped the "high turnover" framing)
+- `README.md` — Overview and tech stack: SQLite single-user option added alongside PostgreSQL (private tier description, desktop client paragraph, and Database row)
+- `README.md` — Tech stack table: ExifTool (IPTC/EXIF embedding) row added to match High Level Plan §6
+
+---
+
 ## [2026-06-17-1709] — Sync Documentation Plan phasing with High Level Plan (Doc Plan v0.8)
 
 ### Fixed

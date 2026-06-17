@@ -7,16 +7,16 @@ MCIS is a free, open source collections management system designed for small mus
 MCIS separates public discovery from private operations through a two-tier architecture:
 
 - **Public tier** — selected records and images published to the museum's Internet Archive collection for free, permanent public access
-- **Private tier** — full operational data maintained in a secure, self-hosted PostgreSQL database covering collections, loans, donors, members, and inventory
+- **Private tier** — full operational data maintained in a secure, self-hosted database covering collections, loans, donors, members, and inventory
 
-A lightweight desktop client can be installed on a laptop or workstation and connect to a PostgreSQL database running on one machine the museum already owns. No web server or cloud subscription required.
+A lightweight desktop client can be installed on a laptop or workstation and connect to a shared PostgreSQL database running on one machine the museum already owns — or run against a single-file SQLite database for single-user installations. No web server or cloud subscription required.
 
 ## Key principles
 
 - Free and open source — no licensing fees
 - Internet Archive publishing as a first-class feature, available from the first release
 - Runs on modest hardware the museum already owns
-- Low training curve for volunteers and part-time staff with high turnover
+- Intuitive and easy to use for staff and volunteers experienced in museum and archive work — a low training curve is a first-order design requirement
 - Modular — museums can adopt only the modules they need and expand over time
 - Data portable — museums own their data; no vendor lock-in; standard SQL exports
 - Accessible by design — consistent, intuitive interface operable without specialist training
@@ -26,9 +26,10 @@ A lightweight desktop client can be installed on a laptop or workstation and con
 | Layer          | Technology                     |
 | :------------- | :----------------------------- |
 | Desktop client | Python / PySide6               |
-| Database       | PostgreSQL                     |
+| Database       | PostgreSQL (multi-user) / SQLite (single-user) |
 | Database layer | SQLAlchemy                     |
 | IA publishing  | Internet Archive API           |
+| Image metadata | ExifTool (IPTC/EXIF embedding) |
 | Packaging      | PyInstaller (Windows, Linux, macOS) |
 
 ## Project status
