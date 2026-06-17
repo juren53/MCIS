@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-17-1659] — Refine guiding principles, add Grant Alignment, rename WHM (v0.16)
+
+### Added
+- `docs/MCIS_High_Level_Plan.md` — §5 new "Grant Alignment" subsection: maps six funder priorities (public access, rights, data stewardship, interoperability, sustainability, mission alignment) to concrete MCIS features, with a candid note that single-developer sustainability is the likeliest review concern
+- `docs/MCIS_High_Level_Plan.md` — §11 QR Code Generator prototype: link to the six placeholder IA records added ([archive.org/details/@juren?query=Weston](https://archive.org/details/@juren?query=Weston))
+
+### Changed
+- `docs/MCIS_High_Level_Plan.md` — §2 "Simple to Operate" principle reframed around intuitive, easy use for staff/volunteers experienced in museum and archive work, dropping the "high turnover" framing
+- `docs/MCIS_High_Level_Plan.md` — §2 "Grant Friendly" principle: subject-verb agreement fixed ("supports" → "support")
+- `docs/MCIS_High_Level_Plan.md` and `CHANGELOG.md` — Whitehead Home Museum renamed to Weston Historical Museum throughout (WHM abbreviation unchanged)
+- `docs/MCIS_High_Level_Plan.md` — §11 QR Code Generator prototype reworded; count corrected from two to six QR codes; version bumped to 0.16
+
+---
+
 ## [2026-06-17-1304] — Fold SQLite single-user option into tech stack table (v0.15)
 
 ### Changed
