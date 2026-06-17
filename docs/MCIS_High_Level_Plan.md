@@ -109,6 +109,21 @@ MCIS field names and controlled vocabularies are informed by established collect
 
 **Note:** MCIS does not claim certification under any of these standards. The alignment documented here reflects best-effort conformance at the schema and workflow level, and will be refined through the advisory board [TBD] review process.
 
+### Grant Alignment
+
+The standards work above is one half of the grant case; the other half is how MCIS maps to what funders actually evaluate. Grant reviewers at IMLS, NEH, state humanities councils, and private foundations consistently weigh public access, rights management, data stewardship, interoperability, and sustainability. MCIS is designed so a small institution can answer each of these with a concrete feature rather than a promise.
+
+| Funder Priority | How MCIS Supports It |
+| :--- | :--- |
+| **Public access & dissemination** | Internet Archive publishing is built in from Phase 1 — publishing an approved record is a one-step workflow, not a separate grant deliverable. The Truman Home Music Collection (§11) is a live proof of the end-to-end workflow producing free, permanent public access. |
+| **Rights & permissions** | A rights statement is required before any object can be published publicly, so digitization funded by a grant cannot inadvertently publish material without clear rights. |
+| **Data stewardship** | Complete audit trail with user attribution and before/after values, full database export in standard SQL, and deployment guidance for automated and off-site backups (§10) align with IMLS data stewardship expectations for grantees. |
+| **Interoperability & open formats** | Records align with Dublin Core, IPTC, SPECTRUM, LIDO, and AAM standards and export in non-proprietary formats — satisfying funder preferences for portable, reusable outputs over vendor-locked deliverables. |
+| **Sustainability** | Free and open source, running on hardware the institution already owns, with no subscription — the project demonstrably continues beyond the grant period without recurring cost. |
+| **Mission alignment** | The open access, GLAM-aligned mission supports collections access and community-anchor goals common to IMLS and NEH humanities programs. |
+
+**Note:** Sustainability beyond a single developer is the open question a reviewer is most likely to probe; the advisory board [TBD] and community governance model (Phase 5) are the planned mitigations (§10).
+
 ---
 
 ## 6. Technology Overview
