@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-17-1210] — Add Truman Home Music Collection to Prior Work (v0.10)
+
+### Changed
+- `docs/MCIS_High_Level_Plan.md` — §11 Prior Work: Truman Home Music Collection added; proof-of-concept project with a live Internet Archive collection at archive.org/details/trumanhomemusic; framed as direct prior art for MCIS's IA publishing model — proves out end-to-end IA workflow (collection setup, item upload, metadata mapping, public access); version bumped to 0.10
+
+---
+
 ## [2026-06-17-1201] — Address 13-Point Critique of Documentation Plan (v0.5)
 
 ### Added
@@ -417,7 +424,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Version History Summary
 
-- **2026-06-17** — Documentation Plan v0.5: 13-point critique resolved (Contributing Guide moved to Phase 1, Quick Start/SECURITY.md/Release Notes added, Members/Comms schema gap flagged, Phase 2 heading corrected, ExifTool/IPTC added to descriptions, planned count 11 → 15); High Level Plan v0.9: 12-point critique resolved (Phase 2/3 inconsistencies, cross-section fixes, Members/Comms schema gap flagged, hardcoded use case count removed); HSTL prior work woven throughout plan (v0.8): §11 Prior Work & Related Projects added (HPM, Tag Writer, ATW); IPTC and ExifTool added to standards and technology tables
+- **2026-06-17** — High Level Plan v0.10: Truman Home Music Collection added to §11 Prior Work (live IA collection, IA publishing proof of concept); Documentation Plan v0.5: 13-point critique resolved (Contributing Guide moved to Phase 1, Quick Start/SECURITY.md/Release Notes added, Members/Comms schema gap flagged, Phase 2 heading corrected, ExifTool/IPTC added to descriptions, planned count 11 → 15); High Level Plan v0.9: 12-point critique resolved (Phase 2/3 inconsistencies, cross-section fixes, Members/Comms schema gap flagged, hardcoded use case count removed); HSTL prior work woven throughout plan (v0.8): §11 Prior Work & Related Projects added (HPM, Tag Writer, ATW); IPTC and ExifTool added to standards and technology tables
 - **2026-06-16** — Documentation Plan v0.4: Test Plan added, descriptions revised, Planned count corrected; Phase 2 restructured to Members, Donors, Locations & Loans in both plan and documentation plan; Documentation Plan critique file added; Phase 1 schema critique fixes (maker, condition_date, file_path UNIQUE, finding_aid_is_url, MIME types, single-role note); CHANGELOG timestamps updated to HHMM; use case critique fixes (42 cases, 6 new UCs); ia_queued added to Phase 1 schema; README documentation table; use cases collection (36 cases initial); Phase 2 schema design and critique passes; deployment model clarified; CHANGELOG added
 - **2026-06-15** — Phase 1 schema design (collections, objects, media, users, audit_log) added; README deployment wording improved
 - **2026-06-14** — Project launched: high-level plan converted from HTML and fully revised; README written and refined; critique passes on both documents
