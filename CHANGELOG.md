@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-17-2104] — Add Scanning & Audio Ingest modules, Exiv2 option, NARA validation (v0.18)
+
+### Added
+- `docs/MCIS_High_Level_Plan.md` — §4 Collections module: **Scanning Module** — an interface layer between existing, proven scanning software and Collections (not a scanner driver), integrating the pre-existing Tag Writer photo-metadata functions; MCIS does not re-invent functional, well-proven wheels
+- `docs/MCIS_High_Level_Plan.md` — §4 Collections module: audio recording (MP3, WAV) attachment with ID3v2.3 archival metadata embedding via the Audio Tag Writer (ATW) functions, mirroring the image metadata workflow
+- `docs/MCIS_High_Level_Plan.md` — §4 Collections module: **Audio Ingest Module** — the audio counterpart to the Scanning Module, integrating the pre-existing ATW functions already running in production at the Truman Library
+- `docs/MCIS_High_Level_Plan.md` — §11 Prior Work intro: NARA validation paragraph — image and audio files processed at the Truman Library using HPM, Tag Writer, and ATW have been uploaded to and validated in the U.S. National Archives (NARA) Catalog and are currently available online
+
+### Changed
+- `docs/MCIS_High_Level_Plan.md` — all seven ExifTool references updated to "ExifTool (and/or Exiv2)" (§4 Collections, §5 IPTC row, §6 tech stack, §11 HPM and Tag Writer)
+- `docs/MCIS_High_Level_Plan.md` — version bumped to 0.18
+
+---
+
 ## [2026-06-17-1711] — Sync README with High Level Plan
 
 ### Changed

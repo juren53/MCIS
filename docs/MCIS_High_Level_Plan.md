@@ -1,6 +1,6 @@
 # MCIS — Museum Collections Information System
 
-_High Level Project Plan — Draft Version 0.17 — 2026-06-17-1725_
+_High Level Project Plan — Draft Version 0.18 — 2026-06-17-2104_
 
 ---
 
@@ -63,7 +63,10 @@ The foundation of any collections management system — with the feature that se
 
 - Create and manage named collections with accession policies and finding aids (free text or URL)
 - Accession individual objects with full cataloguing fields: title, maker, date made, medium, dimensions, provenance, credit line, rights statement, condition grade, condition notes, and structured condition assessment date
-- Attach multiple images and documents (JPEG, TIFF, PNG, PDF) per object, with primary image designation, sort order, and IPTC/EXIF metadata embedding via ExifTool — ensuring attached images carry accession number, rights statement, and credit information within the file itself
+- Attach multiple images and documents (JPEG, TIFF, PNG, PDF) per object, with primary image designation, sort order, and IPTC/EXIF metadata embedding via ExifTool (and/or Exiv2) — ensuring attached images carry accession number, rights statement, and credit information within the file itself
+- **Scanning Module** — An interface layer between existing, proven scanning software and Collections rather than a scanner driver of its own; MCIS does not re-invent functional, well-proven wheels. As images are scanned individually or in batches, the module ingests them, checks for and reports on existing metadata, and facilitates review, correction, and attachment to objects as the user or institution deems necessary. It integrates the pre-existing Tag Writer photo-metadata functions (IPTC/XMP/EXIF editing via the bundled ExifTool and/or Exiv2) so scanned images can be inspected and corrected in the same HSTL field set used throughout MCIS before they are committed to the catalogue
+- Attach audio recordings (MP3, WAV) per object, with archival ID3v2.3 metadata embedding via the Audio Tag Writer (ATW) functions — ensuring attached recordings carry accession number, speakers, date recorded, rights/restrictions, and collection within the file itself, mirroring the image metadata workflow
+- **Audio Ingest Module** — The audio counterpart to the Scanning Module: an interface layer between existing, proven audio digitization and transfer software and Collections rather than a capture tool of its own. As recordings are transferred individually or in batches, the module ingests them, checks for and reports on existing metadata, and facilitates review, correction, and attachment to objects as the user or institution deems necessary. It integrates the pre-existing Audio Tag Writer (ATW) functions (the HSTL ID3v2.3 archival frame set, with cross-schema aliases for iTunes, XMP, and Windows Media) — modules already functioning in production at the Truman Library — so transferred recordings are inspected and corrected in the same archival field set used throughout MCIS before they are committed to the catalogue
 - Field-specific and full-text search across the entire catalogue
 - Role-based access control: Admin, Registrar, Staff, Volunteer, and Read-Only — each role has appropriate capabilities
 - Complete audit trail of every record creation, edit, and deletion, with user attribution and before/after field values
@@ -101,7 +104,7 @@ MCIS field names and controlled vocabularies are informed by established collect
 | Standard | How MCIS Aligns |
 | :--- | :--- |
 | **Dublin Core** | Core descriptive fields — title, maker (creator), date made, description, rights statement — map directly to Dublin Core elements; used as the basis for Internet Archive metadata export |
-| **IPTC** (International Press Telecommunications Council) | Image metadata fields — headline (title), caption (description), object name (accession number), byline (photographer), credit, source (collection), copyright notice (restrictions) — are embedded directly in attached image files using ExifTool; field mapping proven in the HSTL photo pipeline and Tag Writer |
+| **IPTC** (International Press Telecommunications Council) | Image metadata fields — headline (title), caption (description), object name (accession number), byline (photographer), credit, source (collection), copyright notice (restrictions) — are embedded directly in attached image files using ExifTool (and/or Exiv2); field mapping proven in the HSTL photo pipeline and Tag Writer |
 | **SPECTRUM** (Collections Trust, UK) | Object accession, object entry, location and movement control, loans in/out, condition checking, and the audit trail align with SPECTRUM unit of practice definitions; the workflow design in the use case library explicitly references SPECTRUM procedures |
 | **LIDO** (Lightweight Information Describing Objects) | Phase 4 data migration tools will support LIDO XML import/export for interoperability with digital aggregators |
 | **AAM Standards** | Object records include the fields required by the *National Standards and Best Practices for U.S. Museums* (American Alliance of Museums, 2008): unique accession number, title, provenance, rights statement, and condition |
@@ -135,7 +138,7 @@ MCIS is a desktop application — not a web application. This is a deliberate ch
 | Desktop client | Python / PySide6 | Runs on Windows, Linux, and macOS. Free to distribute. Staff install it and use it — no browser required. |
 | Database | PostgreSQL (multi-user) / SQLite (single-user) | Multi-user: PostgreSQL runs on existing hardware with concurrent access for multiple staff simultaneously. Single-user option: SQLite — no separate database server required; the database lives in a single file alongside the application. Both are free and open source. |
 | IA Publishing | Internet Archive API | The official Internet Archive tool for metadata and file upload — ensures compatibility with IA's current and future API. |
-| Image Metadata | ExifTool | Embeds IPTC/EXIF metadata directly into attached image files at ingest — accession number, rights statement, credit, and collection. Ensures images carry provenance data within the file regardless of where they are copied or published. Bundled with the application; no separate installation required. |
+| Image Metadata | ExifTool (and/or Exiv2) | Embeds IPTC/EXIF metadata directly into attached image files at ingest — accession number, rights statement, credit, and collection. Ensures images carry provenance data within the file regardless of where they are copied or published. Bundled with the application; no separate installation required. |
 | Packaging | PyInstaller | Staff install MCIS like any other desktop application. No Python installation or technical knowledge required on their machines. |
 
 **Data ownership:** All data lives in a PostgreSQL database on hardware the museum controls. Export the full database at any time in standard SQL format. There is no cloud sync, no vendor account required, and no data stored outside the museum's own infrastructure.
@@ -195,7 +198,7 @@ Development proceeds in phases. Each phase produces a testable, usable milestone
 
 ### Phase 4 — Data Migration
 
-*Help institutions that already have data bring it in.*
+*Make it easy to import pre-existing data from a variety of sources.*
 
 - CSV/Excel import with configurable field mapping — drawing on batch processing and Unicode handling experience from the HSTL photo and audio metadata pipelines
 - LIDO and other standard interchange format support
@@ -271,17 +274,19 @@ CollectiveAccess is the closest open source peer — a capable, mature system wi
 
 MCIS grows from production tools and prototypes built for the Harry S. Truman Presidential Library (HSTL) and Weston Historical Museum (WHM). Each project addresses a problem MCIS will face — and each represents working code, field-tested metadata schemas, and proven workflows that can be adapted rather than rebuilt from scratch.
 
+Image and audio files processed at the Truman Library using the HPM, Tag Writer, and Audio Tag Writer (ATW) code have been uploaded to and validated in the U.S. National Archives (NARA) Catalog, and are currently available online — concrete proof that these metadata schemas and tools produce records accepted and published by a national repository, not just in a developer's test environment.
+
 ### HPM — HSTL Photo Metadata Framework
 
-A Python/PyQt6 desktop application that orchestrates an 8-step batch pipeline: Excel metadata spreadsheet → CSV conversion → Unicode cleanup → TIFF processing → IPTC/EXIF metadata embedding (via ExifTool) → JPEG conversion → resizing → watermarking for restricted images. The pipeline prepares photos for upload to the NARA catalog. HPM is packaged with PyInstaller, ships as a single Windows executable, and has a full acceptance test suite.
+A Python/PyQt6 desktop application that orchestrates an 8-step batch pipeline: Excel metadata spreadsheet → CSV conversion → Unicode cleanup → TIFF processing → IPTC/EXIF metadata embedding (via ExifTool and/or Exiv2) → JPEG conversion → resizing → watermarking for restricted images. The pipeline prepares photos for upload to the NARA catalog. HPM is packaged with PyInstaller, ships as a single Windows executable, and has a full acceptance test suite.
 
-**MCIS relevance:** The ExifTool integration, batch image processing pipeline, IPTC field mapping, and PyInstaller packaging approach are all directly applicable to the MCIS Objects module and the Phase 5 Data Migration tools.
+**MCIS relevance:** The ExifTool (and/or Exiv2) integration, batch image processing pipeline, IPTC field mapping, and PyInstaller packaging approach are all directly applicable to the MCIS Objects module and the Phase 5 Data Migration tools.
 
 **Repository:** [github.com/juren53/HST-Metadata](https://github.com/juren53/HST-Metadata)
 
 ### Tag Writer
 
-A Python/PyQt6 image metadata editor for cases where batch processing is not applicable — a registrar or archivist needs to view or correct the metadata on a single image. Tag Writer edits IPTC/XMP/EXIF fields with a form-based UI, includes a full-size image viewer, bundles ExifTool for fast image paging, and supports multiple color themes and JSON export/import.
+A Python/PyQt6 image metadata editor for cases where batch processing is not applicable — a registrar or archivist needs to view or correct the metadata on a single image. Tag Writer edits IPTC/XMP/EXIF fields with a form-based UI, includes a full-size image viewer, bundles ExifTool (and/or Exiv2) for fast image paging, and supports multiple color themes and JSON export/import.
 
 The HSTL IPTC field set Tag Writer implements — headline (title), caption-abstract (description), object name (accession number), byline (photographer), credit, source (collection), copyright notice (restrictions) — is the direct basis for the MCIS object metadata schema and its mapping to Internet Archive metadata fields.
 
