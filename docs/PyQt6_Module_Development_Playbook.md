@@ -312,9 +312,9 @@ Work through this list in order. The goal is a window that opens with the correc
 
 ## Module Migration Status
 
-| App | IMM | ThemeManager | ZoomManager | pyqt-app-info |
-|---|---|---|---|---|
-| QR Code Generator | ✅ v0.2.2 | ✅ v0.2.2 | — | ✅ |
-| Tag Writer | ❌ local `platform.py` | ✅ v0.2.6 | ❌ local CSS | — |
-| Audio Tag Writer | ❌ local `platform.py` | ✅ v0.7.10 | ❌ local CSS | — |
-| HST-Metadata | — | — | — | — |
+| App | IMM | ThemeManager | ZoomManager | AUMID | pyqt-app-info |
+|---|---|---|---|---|---|
+| QR Code Generator | ✅ v0.2.2 | ✅ v0.2.2 | — | ✅ version-free | ✅ |
+| Tag Writer | ❌ local `platform.py` | ✅ v0.2.7 | ❌ local CSS | ✅ v0.2.7 | — |
+| Audio Tag Writer | ❌ local `platform.py` | ✅ v0.7.11 | ❌ local CSS | ✅ v0.7.11 | — |
+| HST-Metadata | — | — | — | — | — |
