@@ -338,7 +338,7 @@ A full, multi-user MCOS deployment — one where a shared PostgreSQL database se
 
 | Term | Definition |
 | :--- | :--- |
-| AAM | American Alliance of Museums — the primary professional association for museums in the United States, founded 1906. Publishes the Core Standards for Museums (seven areas including Collections Stewardship) and administers the field's accreditation program, which has been the gold standard of museum excellence since 1971; approximately 1,125 of an estimated 33,000 US museums are currently accredited. The *National Standards and Best Practices for U.S. Museums* (AAM, 2008) defines the minimum object documentation fields — unique accession number, title, provenance, rights statement, and condition record — that MCOS implements on every object record. |
+| AAM | American Alliance of Museums — the primary professional association for museums in the United States, founded 1906. Publishes the Core Standards for Museums, which defines the minimum object documentation fields — unique accession number, title, provenance, rights statement, and condition record — that MCOS implements on every object record. |
 | Dublin Core | A widely adopted standard for describing digital resources — fifteen core elements including title, creator, date, description, and rights. Used as the basis for Internet Archive metadata. |
 | GLAM | Galleries, Libraries, Archives, and Museums — the cultural heritage sector collectively. |
 | IA | Internet Archive (archive.org) — a non-profit digital library offering free, permanent storage and public access. |
