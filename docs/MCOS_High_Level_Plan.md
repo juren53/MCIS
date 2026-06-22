@@ -361,7 +361,7 @@ A full, multi-user MCOS deployment — one where a shared PostgreSQL database se
 The following standards, guidelines, and specifications are foundational to MCOS — they are the sources for its field names, controlled vocabularies, workflow structure, and design priorities.
 
 **AAM — *National Standards and Best Practices for U.S. Museums*** (American Alliance of Museums, 2008)
-The benchmark for professional collections stewardship in the United States. Defines the minimum documentation requirements — unique accession number, title, provenance, rights statement, and condition record — that every MCOS object record implements. Published by the American Alliance of Museums: [americanalliance.org](https://www.americanalliance.org).
+The benchmark for professional collections stewardship in the United States. Defines the minimum documentation requirements — unique accession number, title, provenance, rights statement, and condition record — that every MCOS object record implements. Published by the American Alliance of Museums: [aam-us.org](https://www.aam-us.org).
 
 **SPECTRUM 5.1** (Collections Trust, 2022)
 The most comprehensive collections management procedures standard in the GLAM sector, covering 21 procedures from object entry and accessioning through loans, location control, condition checking, rights management, and deaccessioning. MCOS workflow design follows SPECTRUM unit-of-practice definitions throughout. Required for UK Arts Council Accreditation; widely adopted internationally. Published by Collections Trust: [collectionstrust.org.uk/spectrum](https://collectionstrust.org.uk/spectrum).
