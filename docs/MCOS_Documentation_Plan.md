@@ -10,7 +10,7 @@ This document tracks all MCOS documentation — completed, in progress, and plan
 
 | Status | Count |
 | :--- | :--- |
-| Complete | 8 |
+| Complete | 9 |
 | In Progress | 0 |
 | Planned | 16 |
 
@@ -28,6 +28,7 @@ This document tracks all MCOS documentation — completed, in progress, and plan
 | CHANGELOG | `CHANGELOG.md` | All | Running record of all notable project changes with datetime-stamped entries |
 | Documentation Plan | `docs/MCOS_Documentation_Plan.md` | All | This document — tracks all project documentation: complete, in progress, and planned |
 | QR Code Generator README | [`github.com/juren53/qr-code-generator`](https://github.com/juren53/qr-code-generator) | All | Standalone module overview: origin, prototype findings (WHM ship's bell and bridge clock), testing results, open questions on backend, artifact numbering, and physical display |
+| Controlled Vocabulary Guide | `docs/controlled_vocabulary.md` | Developers, registrars, advisory board | Defines the controlled vocabularies for all MCOS fields, including condition grades, rights statements, accession methods, and media roles. Covers development process, external authority sources (Getty AAT, RightsStatements.org), schema storage patterns, and term governance (proposal, approval, retirement). |
 
 ---
 
@@ -92,4 +93,4 @@ Documents are listed in the phase when they are expected to be drafted. All date
 
 ---
 
-_2026-06-17-1709_
+_2026-06-22-1121_
