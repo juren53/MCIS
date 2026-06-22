@@ -36,13 +36,13 @@ A lightweight desktop client can be installed on a laptop or workstation and con
 
 MCOS is in **Phase 0 — Project Infrastructure**. Schema design and use case documentation are complete; application development is beginning.
 
-For the full project plan — including module architecture, phased roadmap, data model, competitive landscape, risks, and glossary — see [docs/MCOS_High_Level_Plan.md](docs/MCOS_High_Level_Plan.md).
+For the full project plan — including module architecture, phased roadmap, data model, competitive landscape, risks, glossary, and key reference documents — see [docs/MCOS_High_Level_Plan.md](docs/MCOS_High_Level_Plan.md).
 
 ## Documentation
 
 | Document | Description |
 | :------- | :---------- |
-| [High Level Plan](docs/MCOS_High_Level_Plan.md) | Full project plan: architecture, phases, entity model, risks, glossary |
+| [High Level Plan](docs/MCOS_High_Level_Plan.md) | Full project plan: architecture, phases, entity model, risks, glossary, and [key reference documents](docs/MCOS_High_Level_Plan.md#14-key-documents) |
 | [Phase 1 Schema](docs/schema_phase1.md) | Database schema — Collections, Objects, Media, Users, AuditLog |
 | [Phase 2 Schema](docs/schema_phase2.md) | Database schema — Locations, Loans, Donors; Phase 1 migrations |
 | [Use Cases](docs/use_cases/index.md) | 42 use cases documenting operational workflows for every module across Phases 1 and 2 |
