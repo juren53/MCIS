@@ -69,3 +69,7 @@ Visit the [GitHub repository](https://github.com/juren53/MCOS) to open an issue 
 ## License
 
 License will be MIT or GPL v3 — decision expected before the first code release.
+
+---
+
+_2026-06-22-0623_
