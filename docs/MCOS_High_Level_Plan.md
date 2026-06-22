@@ -353,6 +353,34 @@ A full, multi-user MCOS deployment — one where a shared PostgreSQL database se
 | Registrar | The staff member responsible for the legal and physical custody of the collection: accessioning objects, maintaining documentation (provenance, condition, location), managing loans, and tracking rights. In large institutions this is a dedicated position; in small museums and historical societies — MCOS's primary audience — there is rarely a designated Registrar, and these responsibilities typically fall to the director, the curator, or a trained volunteer. "Registrar" is primarily a North American title; the equivalent role in UK and European institutions is more commonly called Collections Manager. MCOS uses "Registrar" as a default system role name for whichever person performs these functions, but role names are configurable to suit each organization. |
 | SPECTRUM | Collections management standard published by Collections Trust (UK), currently at version 5.1 (September 2022). Defines 21 procedures covering the full range of collections management activity — from object entry and accessioning through loans, location control, condition checking, rights management, and deaccessioning. Required standard for UK Arts Council Accreditation; widely adopted internationally as a benchmark for professional collections stewardship. |
 | TMS | The Museum System — a commercial collections management platform by Gallery Systems (now Axiell). |
+
+---
+
+## 14. Key Documents
+
+The following standards, guidelines, and specifications are foundational to MCOS — they are the sources for its field names, controlled vocabularies, workflow structure, and design priorities.
+
+**AAM — *National Standards and Best Practices for U.S. Museums*** (American Alliance of Museums, 2008)
+The benchmark for professional collections stewardship in the United States. Defines the minimum documentation requirements — unique accession number, title, provenance, rights statement, and condition record — that every MCOS object record implements. Published by the American Alliance of Museums (americanalliance.org).
+
+**SPECTRUM 5.1** (Collections Trust, 2022)
+The most comprehensive collections management procedures standard in the GLAM sector, covering 21 procedures from object entry and accessioning through loans, location control, condition checking, rights management, and deaccessioning. MCOS workflow design follows SPECTRUM unit-of-practice definitions throughout. Required for UK Arts Council Accreditation; widely adopted internationally. Published by Collections Trust (collectionstrust.org.uk).
+
+**Dublin Core Metadata Element Set** (Dublin Core Metadata Initiative)
+A fifteen-element standard for describing digital resources — title, creator, date, description, rights, and related fields. Dublin Core is the basis for Internet Archive item metadata, and MCOS object records map directly to these elements for IA export. Maintained by the Dublin Core Metadata Initiative (dublincore.org).
+
+**IPTC Photo Metadata Standard** (International Press Telecommunications Council)
+Defines the metadata fields embedded in image files — headline, caption, object name, byline, credit, source, and copyright notice. These fields are the direct model for the MCOS image attachment schema, and are written into image files at ingest via ExifTool. The HSTL field set used throughout MCOS is a profile of the IPTC standard. Maintained by IPTC (iptc.org).
+
+**LIDO — Lightweight Information Describing Objects** (ICOM/CIDOC)
+An XML schema for exchanging museum object data with digital aggregators and cross-collection discovery platforms. MCOS Phase 4 data migration tools will support LIDO import and export for interoperability with partner institutions and national aggregators. Maintained by the International Council of Museums (lido-schema.org).
+
+**IMLS Museum Data Stewardship Guidance** (Institute of Museum and Library Services)
+IMLS grant program guidelines set expectations for data stewardship, public access, rights documentation, and sustainability that grantees must demonstrate. MCOS's audit logging, rights-required publishing workflow, full database export, and backup guidance are all designed to satisfy these expectations. Published by IMLS (imls.gov).
+
+**Internet Archive Metadata Schema and S3-like API** (Internet Archive)
+The metadata fields and upload interface that govern how items are submitted to and described on archive.org. MCOS's IA publishing feature is built directly on this API, and the IA metadata schema drives the field mapping between MCOS object records and public-facing IA items. Documentation available at archive.org/services/docs/api.
+
 ---
 
 _2026-06-22-0557_
