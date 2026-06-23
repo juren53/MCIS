@@ -278,7 +278,7 @@ CollectiveAccess is the closest open source peer — a capable, mature system wi
 
 MCOS grows from production tools and prototypes built for the Harry S. Truman Presidential Library (HSTL) and Weston Historical Museum (WHM). Each project addresses a problem MCOS will face — and each represents working code, field-tested metadata schemas, and proven workflows that can be adapted rather than rebuilt from scratch.
 
-Image and audio files processed at the Truman Library using the HPM, Tag Writer, and Audio Tag Writer (ATW) code have been uploaded to and validated in the U.S. National Archives (NARA) Catalog, and are currently available online — concrete proof that these metadata schemas and tools produce records accepted and published by a national repository, not just in a developer's test environment.
+Image and audio files processed at the Truman Library using the HPM, Tag Writer, and Audio Tag Writer (ATW) code have been uploaded to the U.S. National Archives (NARA) Catalog, and are currently available online — concrete proof that these metadata schemas and tools produce records accepted and published by a national repository, not just in a developer's test environment.
 
 ### HPM — HSTL Photo Metadata Framework
 
