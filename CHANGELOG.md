@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-23-1510] — Tighten NARA proof sentence in §11
+
+### Changed
+- `docs/MCOS_High_Level_Plan.md` — §11 Prior Work intro: "concrete proof that these metadata schemas and tools produce records accepted and published by a national repository, not just in a developer's test environment" → "concrete proof that these metadata schemas and tools produce objects published to a national repository"
+
+---
+
 ## [2026-06-23-1503] — Add controlled vocabulary guide
 
 ### Added
