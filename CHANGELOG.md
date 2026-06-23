@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2026-06-23-1501] — Remove 'and validated in' from NARA reference in §11
+
+### Changed
+- `docs/MCOS_High_Level_Plan.md` — §11 Prior Work intro: "uploaded to and validated in the U.S. National Archives (NARA) Catalog" → "uploaded to the U.S. National Archives (NARA) Catalog"
+
+---
+
 ## [2026-06-17-2125] — Rename project MCIS → MCOS (v0.19)
 
 ### Changed
