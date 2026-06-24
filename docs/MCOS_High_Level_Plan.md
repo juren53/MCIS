@@ -103,7 +103,7 @@ MCOS field names and controlled vocabularies are informed by established collect
 | Standard | How MCOS Aligns |
 | :--- | :--- |
 | **Dublin Core** | Core descriptive fields — title, maker (creator), date made, description, rights statement — map directly to Dublin Core elements; used as the basis for Internet Archive metadata export |
-| **IPTC** (International Press Telecommunications Council) | Image metadata fields — headline (title), caption (description), object name (accession number), byline (photographer), credit, source (collection), copyright notice (restrictions) — are embedded directly in attached image files using ExifTool (and/or Exiv2); field mapping proven in the HSTL photo pipeline and Tag Writer |
+| **IPTC** (International Press Telecommunications Council) | Image metadata fields — headline (title), caption (description), object name (accession number), byline (photographer), credit, source (collection), copyright notice (restrictions) — are embedded directly in attached image files using ExifTool (and/or Exiv2); field mapping proven in the HSTL photo pipeline and Photo Tag Writer |
 | **SPECTRUM** (Collections Trust, UK) | Object accession, object entry, location and movement control, loans in/out, condition checking, and the audit trail align with SPECTRUM unit of practice definitions; the workflow design in the use case library explicitly references SPECTRUM procedures |
 | **LIDO** (Lightweight Information Describing Objects) | Phase 4 data migration tools will support LIDO XML import/export for interoperability with digital aggregators |
 | **AAM Standards** | Object records include the fields required by the *National Standards and Best Practices for U.S. Museums* (American Alliance of Museums, 2008): unique accession number, title, provenance, rights statement, and condition |
@@ -278,7 +278,7 @@ CollectiveAccess is the closest open source peer — a capable, mature system wi
 
 MCOS grows from production tools and prototypes built for the Harry S. Truman Presidential Library (HSTL) and Weston Historical Museum (WHM). Each project addresses a problem MCOS will face — and each represents working code, field-tested metadata schemas, and proven workflows that can be adapted rather than rebuilt from scratch.
 
-Image and audio files processed at the Truman Library using the HPM, Tag Writer, and Audio Tag Writer (ATW) code have been uploaded to the U.S. National Archives (NARA) Catalog, and are currently available online — concrete proof that these metadata schemas and tools produce objects published to a national repository.
+Image and audio files processed at the Truman Library using the HPM, Photo Tag Writer, and Audio Tag Writer (ATW) code have been uploaded to the U.S. National Archives (NARA) Catalog, and are currently available online — concrete proof that these metadata schemas and tools produce objects published to a national repository.
 
 ### HPM — HSTL Photo Metadata Framework
 
@@ -288,11 +288,11 @@ A Python/PyQt6 desktop application that orchestrates an 8-step batch pipeline: E
 
 **Repository:** [github.com/juren53/HST-Metadata](https://github.com/juren53/HST-Metadata)
 
-### Tag Writer
+### Photo Tag Writer
 
-A Python/PyQt6 image metadata editor for cases where batch processing is not applicable — a registrar or archivist needs to view or correct the metadata on a single image. Tag Writer edits IPTC/XMP/EXIF fields with a form-based UI, includes a full-size image viewer, bundles ExifTool (and/or Exiv2) for fast image paging, and supports multiple color themes and JSON export/import.
+A Python/PyQt6 image metadata editor for cases where batch processing is not applicable — a registrar or archivist needs to view or correct the metadata on a single image. Photo Tag Writer edits IPTC/XMP/EXIF fields with a form-based UI, includes a full-size image viewer, bundles ExifTool (and/or Exiv2) for fast image paging, and supports multiple color themes and JSON export/import.
 
-The HSTL IPTC field set Tag Writer implements — headline (title), caption-abstract (description), object name (accession number), byline (photographer), credit, source (collection), copyright notice (restrictions) — is the direct basis for the MCOS object metadata schema and its mapping to Internet Archive metadata fields.
+The HSTL IPTC field set Photo Tag Writer implements — headline (title), caption-abstract (description), object name (accession number), byline (photographer), credit, source (collection), copyright notice (restrictions) — is the direct basis for the MCOS object metadata schema and its mapping to Internet Archive metadata fields.
 
 **MCOS relevance:** The IPTC field set and its Dublin Core alignment directly inform the MCOS Objects module schema and the IA metadata export. The single-record editing workflow is the model for the MCOS object record form.
 
@@ -310,7 +310,7 @@ A Python/PyQt6 audio metadata editor with three modes: Archival Recording, Music
 
 A proof-of-concept project managing the musical holdings at the Harry S. Truman National Historic Site (U.S. National Park Service). Phase 1 is complete — a selection of items from the collection is publicly accessible at [archive.org/details/trumanhomemusic](https://archive.org/details/trumanhomemusic). The code and scripts are prototype-quality rather than production-ready.
 
-**MCOS relevance:** This project is the direct proof of concept for MCOS's core Internet Archive publishing model — a real cultural heritage collection, live on IA, published by the same developer. Where HPM, Tag Writer, and ATW prove out the metadata and tooling side, the Truman Home Music Collection proves out the end-to-end IA publishing workflow: collection setup, item upload, metadata mapping, and public access. MCOS formalizes and generalizes this workflow for any small museum.
+**MCOS relevance:** This project is the direct proof of concept for MCOS's core Internet Archive publishing model — a real cultural heritage collection, live on IA, published by the same developer. Where HPM, Photo Tag Writer, and ATW prove out the metadata and tooling side, the Truman Home Music Collection proves out the end-to-end IA publishing workflow: collection setup, item upload, metadata mapping, and public access. MCOS formalizes and generalizes this workflow for any small museum.
 
 **Repository:** [github.com/juren53/TrumanMusicCollection](https://github.com/juren53/TrumanMusicCollection)
 
