@@ -1,6 +1,6 @@
 # MCOS — Museum Collections & Operations System
 
-_High Level Project Plan — Draft Version 0.35 — 2026-06-25-0912_
+_High Level Project Plan — Draft Version 0.36 — 2026-06-25-0933_
 
 ---
 
@@ -23,11 +23,11 @@ The system is built on a two-tier public/private architecture:
 │                    Python / PySide6  ·  Windows · Linux · macOS              │
 └────────────────────────────────┬─────────────────────────────────────────────┘
                                  │
-             ┌───────────────────┴──────────────────────┐
-             │                                          │
+             ┌───────────────────┴─────────────────────┐
+             │                                         │
 ┌────────────▼──────────────────────────────┐  ┌───────▼──────────────────────┐
 │               PRIVATE TIER                │  │         PUBLIC TIER          │
-│                                           │  │                              │
+│             Encryped - Secure             │  │                              │
 │  ┌────────────────────────────────────┐   │  │  ┌────────────────────────┐  │
 │  │       Collections & Objects        │   │  │  │      IA Publisher      │  │
 │  │  Collections · Objects · Accession │   │  │  │  Basic · Full · Batch  │  │
@@ -450,4 +450,4 @@ The metadata fields and upload interface that govern how items are submitted to 
 
 ---
 
-_2026-06-25-0912_
+_2026-06-25-0933_
